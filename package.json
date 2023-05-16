@@ -1,0 +1,24 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "to do list using webpack, module pattern in vanilla js, html, css, eslint, prettier. Practicing SOLID principles",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^6.7.3",
+    "eslint": "^8.40.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "style-loader": "^3.3.2",
+    "webpack-cli": "^5.1.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
