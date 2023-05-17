@@ -1,7 +1,6 @@
-.hello {
-    color: red;
-  }
-
+* {
+  border: 1px solid black;
+}
   :root {
     --background-color: #ffffff;
     --secondary-color: #000;
@@ -17,8 +16,19 @@
     --card-color: #42408f;
   }
   
+.navbar {
+display: flex;
+flex-direction: column;
+gap: 3rem;
+max-width: 8rem;
+}
 
-  .modal {
+.contentwrapper {
+  display: flex;
+
+}
+
+.modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -61,8 +71,13 @@
     pointer-events: all;
   }
   
+  #main-content {
+    flex-grow: 1;
+  }
+
   .card {
     display: flex;
     justify-content: space-between;
+    flex-grow: 1;
     padding: 1rem 1rem;
   }
