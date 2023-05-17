@@ -1,0 +1,68 @@
+.hello {
+    color: red;
+  }
+
+  :root {
+    --background-color: #ffffff;
+    --secondary-color: #000;
+    --button-color: #fff;
+    --card-color: #fff;
+    --checkbox-color: #3f3f3f;
+  }
+  
+  [data-theme="dark"] {
+    --background-color: #212047;
+    --secondary-color: #c5c3f8;
+    --button-color: #635fd6;
+    --card-color: #42408f;
+  }
+  
+
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
+    z-index: 10;
+    background-color: var(--background-color);
+    width: 500px;
+    max-width: 80%;
+  }
+  
+  .modal.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .modal-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--secondary-color);
+  }
+  
+  #overlay {
+    position: fixed;
+    opacity: 0%;
+    transition: ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+  }
+  
+  #overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  
+  .card {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+  }

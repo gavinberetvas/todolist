@@ -1,14 +1,29 @@
-import _ from 'lodash';
-import './style.css';
+import _ from "lodash";
+import modal from "./modules/modal";
 
- function component() {
-   const element = document.createElement('div');
+modal();
 
-   // Lodash, now imported by this script
-   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.classList.add('hello');
 
-   return element;
- }
 
- document.body.appendChild(component());
+
+const dumbutton = document.getElementById("hideitems");
+dumbutton.addEventListener("click", hideItems);
+
+// function hideItems() {
+//   let elements = document.getElementsByClassName("shownote");
+//   for (let i = 0; i < elements.length; i++) {
+//     elements[i].classList.remove("shownote");
+//   }
+// }
+
+function hideItems() {
+  const elements = document.getElementsByClassName('card');
+  for (let i = 0; i < elements.length; i++) {
+    const element = elements[i];
+    if (element.style.display === "none") {
+      element.style.display = ""; // Show the element
+    } else {
+      element.style.display = "none"; // Hide the element
+    }
+  }
+}

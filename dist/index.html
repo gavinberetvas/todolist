@@ -5,8 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button id="todomaker" data-modal-target="#modal">New to do item</button>
+    <button id="hideitems">Hide select items</button>
+
+    <div id="main-content"></div>
+    <div class="modal" id="modal">
+        <div class="modal-header">
+          <div class="title">New Task</div>
+          <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="modalbody">
+          <form id="newtask">
+            <label for=""
+              ><input
+                class="forminput"
+                type="text"
+                id="title"
+                placeholder="Title"
+                required
+            /></label>
+            <label for=""
+              ><input
+                class="forminput"
+                type="text"
+                id="date"
+                placeholder="due date"
+            /></label>
+            <!-- <label for=""
+              ><input
+                class="forminput"
+                type="number"
+                id="pages"
+                placeholder="# of pages"
+                max="10000"
+            /></label> -->
+            <!-- <div class="checkbox-wrapper-39">
+              <div><p class="question">read?</p></div>
+              <label for="read"
+                ><input type="checkbox" id="read" name="read" value="read" />
+                <span class="checkbox"></span>
+              </label>
+            </div> -->
+            <div class="buttonwrapper">
+              <input type="submit" class="button" value="submit" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="overlay"></div>
     <script src="bundle.js"></script>
 </body>
 </html>
