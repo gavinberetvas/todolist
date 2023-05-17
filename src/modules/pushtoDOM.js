@@ -1,14 +1,22 @@
 import { myLibrary } from "./modalPopulate";
+import { index } from './notefolders';
+
+// myLibrary = {
+//   today: [],
+//   tomorrow: [],
+// };
+
 
 function pushtoDom() {
-  const lastObj = myLibrary[myLibrary.length - 1];
+  // const lastObj = myLibrary.index[(myLibrary[index]).length - 1];
+  const lastObj = myLibrary[index][myLibrary[index].length - 1];
   const notetitle = lastObj.title;
   const notedate = lastObj.date;
 
   const note = document.createElement("div");
   note.classList.add("card");
 
-  note.classList.add("shownote");
+  note.classList.add(index);
   
   const title = document.createElement("div");
   title.classList.add("title");

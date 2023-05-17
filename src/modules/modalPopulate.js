@@ -1,11 +1,20 @@
-export const myLibrary = [];
+import { index } from './notefolders';
+
+
+
+export const myLibrary = {
+  today: [],
+  tomorrow: [],
+};
+
+
 
 function modalPopulate() {
   event.preventDefault();
 
-  const { title, date} = event.target.elements;
+  const { title, date } = event.target.elements;
 
-  myLibrary.push({
+  myLibrary[index].push({
     title: title.value,
     date: date.value,
 
