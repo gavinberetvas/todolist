@@ -1,6 +1,6 @@
 import _ from "lodash";
 import modal from "./modules/modal";
-import switchdirectory from "./modules/notefolders";
+import switchdirectory from "./modules/changedirectory";
 
 modal();
 switchdirectory();

@@ -1,5 +1,5 @@
 import { myLibrary } from "./modalPopulate";
-import { index } from './notefolders';
+import { index } from './changedirectory';
 
 // myLibrary = {
 //   today: [],
