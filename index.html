@@ -10,10 +10,10 @@
 <body>
     <div class="contentwrapper">
       <nav class="navbar">
-        <button id="today" class="directory current">TODAY</button>
+        <button id="all" class="directory current">ALL NOTES</button>
+        <button id="today" class="directory">TODAY</button>
         <button id="tomorrow" class="directory">TOMORROW</button>
         <button id="todomaker" data-modal-target="#modal">New to do item</button>
-        <button id="hideitems">Hide select items</button>
       </nav>
       <div id="main-content"></div>
     </div> 
@@ -36,18 +36,28 @@
             <label for=""
               ><input
                 class="forminput"
-                type="text"
+                type="date"
                 id="date"
                 placeholder="due date"
             /></label>
-            <!-- <label for=""
-              ><input
+          <label for="description">
+            <textarea
+              class="forminput"
+              id="description"
+              placeholder="Details"
+            ></textarea>
+          </label>
+          <!-- <label for="">
+              
+              <input
                 class="forminput"
-                type="number"
-                id="pages"
-                placeholder="# of pages"
-                max="10000"
-            /></label> -->
+                type="textarea"
+                id="description"
+                placeholder="details"
+
+            />
+          </label> -->
+
             <!-- <div class="checkbox-wrapper-39">
               <div><p class="question">read?</p></div>
               <label for="read"
@@ -55,12 +65,14 @@
                 <span class="checkbox"></span>
               </label>
             </div> -->
+            
             <div class="buttonwrapper">
               <input type="submit" class="button" value="submit" />
             </div>
           </form>
         </div>
       </div>
+      
       <div id="overlay"></div>
     <script src="bundle.js"></script>
 </body>
