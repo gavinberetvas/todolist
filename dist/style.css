@@ -85,3 +85,7 @@ max-width: 15rem;
     flex-grow: 1;
     padding: 1rem 1rem;
   }
+
+  .rmv {
+    z-index: 10;
+  }
