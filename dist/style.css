@@ -1,5 +1,8 @@
 * {
   border: 1px solid black;
+  /* box-sizing: border-box; */
+  /* margin: 0;
+  padding: 0; */
 }
   :root {
     --background-color: #ffffff;
@@ -60,6 +63,7 @@ max-width: 15rem;
   
   #overlay {
     position: fixed;
+    z-index: 9;
     opacity: 0%;
     transition: ease-in-out;
     top: 0;
@@ -68,6 +72,7 @@ max-width: 15rem;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.25);
     pointer-events: none;
+    backdrop-filter: blur(5px);
   }
   
   #overlay.active {
@@ -83,9 +88,36 @@ max-width: 15rem;
     display: flex;
     justify-content: space-between;
     flex-grow: 1;
-    padding: 1rem 1rem;
+    height: 2rem;
+    width: 93%;
+    padding: 2rem 1rem;
+    background-color: #fff;
   }
 
-  .rmv {
+  .rmv, .edit {
     z-index: 10;
   }
+
+  .card {
+    transition: all 0.5s ease;
+  }
+
+  .focus {
+    margin-left: 1rem;
+    justify-content: center;
+    align-items: center;
+    transition-property: height, width;
+    transition-duration: 0.3s;
+    height: 5rem;
+    width: 80vw;
+    
+  }
+
+  @media screen and (max-width: 600px) {
+    .contentwrapper {
+      display: flex;
+      flex-direction: column;
+
+    }
+  }
+

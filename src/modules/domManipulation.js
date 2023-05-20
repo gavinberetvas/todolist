@@ -14,15 +14,15 @@ function pushtoDom() {
   note.classList.add("card");
   note.classList.add(index);
 
-  note.addEventListener("click", function () {
-    // Event handler code
-    console.log(`clicked`);
-    if (description.style.display != "none") {
-      description.style.display = "none";
-    } else {
-      description.style.display = "";
-    }
-  });
+  // note.addEventListener("click", function () {
+  //   // Event handler code
+  //   console.log(`clicked`);
+  //   if (description.style.display != "none") {
+  //     description.style.display = "none";
+  //   } else {
+  //     description.style.display = "";
+  //   }
+  // });
 
   const title = document.createElement("div");
   title.classList.add("title");
@@ -38,19 +38,19 @@ function pushtoDom() {
   description.style.display = "none";
 
   const buttonBox = document.createElement("div");
-  const removeBtn = deleteButton(notetitle, notedate);
+  const removeBtn = deleteButton(notetitle, notedate, notedescription);
+  const editBtn = editButton(notetitle, notedate, notedescription);
   buttonBox.classList.add("buttonbox");
 
   note.appendChild(title);
   note.appendChild(date);
   note.appendChild(description);
+  buttonBox.appendChild(editBtn);
   buttonBox.appendChild(removeBtn);
   note.appendChild(buttonBox);
 
   document.getElementById("main-content").appendChild(note);
 }
-
-export default pushtoDom;
 
 function deleteButton(notetitle, notedate, notedescription) {
   const removeBtn = document.createElement("button");
@@ -75,6 +75,23 @@ function deleteButton(notetitle, notedate, notedescription) {
   return removeBtn;
 }
 
+function editButton(notetitle, notedate, notedescription) {
+  const editBtn = document.createElement("button");
+  editBtn.classList.add("button");
+  editBtn.classList.add("edit");
+  editBtn.innerHTML = "edit";
+
+  editBtn.setAttribute("data-title", notetitle);
+  editBtn.setAttribute("data-date", notedate);
+  editBtn.setAttribute("data-desc", notedescription);
+
+  editBtn.addEventListener("click", (event) => {
+    console.log("editbuttonclicked");
+  });
+
+  return editBtn;
+}
+
 export function pushAllItemstoDom() {
   let init = myLibrary.getAllObjects();
 
@@ -97,22 +114,49 @@ export function pushAllItemstoDom() {
     description.innerHTML = notedescription;
     description.style.display = "none";
 
-    note.addEventListener("click", function () {
-      // Event handler code
-      console.log(`clicked`);
-      if (description.style.display != "none") {
+    note.addEventListener("click", function (event) {
+      if (note.classList.contains("focus")) {
+        note.classList.remove("focus");
         description.style.display = "none";
       } else {
+        note.classList.add("focus");
         description.style.display = "";
+        note.style.zIndex = 10;
+        note.style.position = "absolute";
+        overlay.classList.add("active");
+        overlay.addEventListener("click", function () {
+          overlay.classList.remove("active");
+          note.style.zIndex = 1;
+          note.style.position = "relative";
+          note.classList.remove("focus");
+          description.style.display = "none";
+        });
       }
+    });
+
+    note.addEventListener("click", function (event) {
+        note.classList.add("focus");
+        description.style.display = "";
+        note.style.zIndex = 10;
+        note.style.position = "absolute";
+        overlay.classList.add("active");
+        overlay.addEventListener("click", function () {
+          overlay.classList.remove("active");
+          note.style.zIndex = 1;
+          note.style.position = "relative";
+          note.classList.remove("focus");
+          description.style.display = "none";
+        });
     });
 
     const buttonBox = document.createElement("div");
     const removeBtn = deleteButton(notetitle, notedate);
+    const editBtn = editButton(notetitle, notedate, notedescription);
     buttonBox.classList.add("buttonbox");
     note.appendChild(title);
     note.appendChild(date);
     note.appendChild(description);
+    buttonBox.appendChild(editBtn);
     buttonBox.appendChild(removeBtn);
     note.appendChild(buttonBox);
     document.getElementById("main-content").appendChild(note);
@@ -132,3 +176,5 @@ function deleteObjectfromLibrary(title, date) {
     }
   }
 }
+
+export default pushtoDom;

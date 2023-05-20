@@ -60,8 +60,6 @@ export let myLibrary = {
   },
 };
 
-// export let libraryDirectories = keys;
-
 function modalPopulate() {
   event.preventDefault();
 
