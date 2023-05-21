@@ -2,6 +2,8 @@ import { myLibrary } from "./modalPopulate";
 import { libraryDirectories } from "./modalPopulate";
 import { index } from "./switchdirectory";
 
+const overlay = document.getElementById('overlay');
+
 function pushtoDom() {
   const lastObj = myLibrary[index][myLibrary[index].length - 1];
   const notetitle = lastObj.title;
@@ -34,18 +36,18 @@ function pushtoDom() {
 
   const description = document.createElement("div");
   description.classList.add("description");
-  description.innerHTML = notedescription;
+  description.innerHTML = ` ${notedescription}`;
   description.style.display = "none";
 
   const buttonBox = document.createElement("div");
   const removeBtn = deleteButton(notetitle, notedate, notedescription);
-  const editBtn = editButton(notetitle, notedate, notedescription);
+  // const editBtn = editButton(notetitle, notedate, notedescription);
   buttonBox.classList.add("buttonbox");
 
   note.appendChild(title);
   note.appendChild(date);
   note.appendChild(description);
-  buttonBox.appendChild(editBtn);
+  // buttonBox.appendChild(editBtn);
   buttonBox.appendChild(removeBtn);
   note.appendChild(buttonBox);
 
@@ -62,34 +64,27 @@ function deleteButton(notetitle, notedate, notedescription) {
   removeBtn.setAttribute("data-date", notedate);
   removeBtn.setAttribute("data-desc", notedescription);
 
-  removeBtn.addEventListener("click", (event) => {
+  removeBtn.addEventListener("click", function (event) {
     const clickedBtn = event.target;
+    const item = document.getElementById("overlay");
     const title = clickedBtn.getAttribute("data-title");
     const date = clickedBtn.getAttribute("data-date");
     const desc = clickedBtn.getAttribute("data-desc");
-    deleteObjectfromLibrary(title, date);
-    removeBtn.closest(".card").remove();
-    console.log(myLibrary.getAllObjects());
+    overlay.classList.remove("active");
+  
+    // deleteObjectfromLibrary(title, date);
+    // overlay.classList.remove("active");
+    // removeBtn.closest(".card").remove();
+    // console.log(myLibrary.getAllObjects());
+    setTimeout(function() {
+      deleteObjectfromLibrary(title, date);
+      overlay.classList.remove("active");
+      removeBtn.closest(".card").remove();h
+      console.log(myLibrary.getAllObjects());
+    }, 100);
   });
 
   return removeBtn;
-}
-
-function editButton(notetitle, notedate, notedescription) {
-  const editBtn = document.createElement("button");
-  editBtn.classList.add("button");
-  editBtn.classList.add("edit");
-  editBtn.innerHTML = "edit";
-
-  editBtn.setAttribute("data-title", notetitle);
-  editBtn.setAttribute("data-date", notedate);
-  editBtn.setAttribute("data-desc", notedescription);
-
-  editBtn.addEventListener("click", (event) => {
-    console.log("editbuttonclicked");
-  });
-
-  return editBtn;
 }
 
 export function pushAllItemstoDom() {
@@ -115,31 +110,16 @@ export function pushAllItemstoDom() {
     description.style.display = "none";
 
     note.addEventListener("click", function (event) {
-      if (note.classList.contains("focus")) {
-        note.classList.remove("focus");
-        description.style.display = "none";
-      } else {
         note.classList.add("focus");
         description.style.display = "";
         note.style.zIndex = 10;
-        note.style.position = "absolute";
+        note.style.position = "relative";
+        // note.focus();
         overlay.classList.add("active");
-        overlay.addEventListener("click", function () {
-          overlay.classList.remove("active");
-          note.style.zIndex = 1;
-          note.style.position = "relative";
-          note.classList.remove("focus");
-          description.style.display = "none";
-        });
-      }
-    });
-
-    note.addEventListener("click", function (event) {
-        note.classList.add("focus");
-        description.style.display = "";
-        note.style.zIndex = 10;
-        note.style.position = "absolute";
-        overlay.classList.add("active");
+        title.contentEditable = true;
+        date.contentEditable = true;
+        description.contentEditable = true;
+        removeBtn.style.display = "";
         overlay.addEventListener("click", function () {
           overlay.classList.remove("active");
           note.style.zIndex = 1;
@@ -150,13 +130,14 @@ export function pushAllItemstoDom() {
     });
 
     const buttonBox = document.createElement("div");
-    const removeBtn = deleteButton(notetitle, notedate);
-    const editBtn = editButton(notetitle, notedate, notedescription);
+    const removeBtn = deleteButton(notetitle, notedate, notedescription);
+    removeBtn.style.display = "none"
+    // const editBtn = editButton(notetitle, notedate, notedescription);
     buttonBox.classList.add("buttonbox");
     note.appendChild(title);
     note.appendChild(date);
     note.appendChild(description);
-    buttonBox.appendChild(editBtn);
+    // buttonBox.appendChild(editBtn);
     buttonBox.appendChild(removeBtn);
     note.appendChild(buttonBox);
     document.getElementById("main-content").appendChild(note);

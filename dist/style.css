@@ -103,13 +103,13 @@ max-width: 15rem;
   }
 
   .focus {
-    margin-left: 1rem;
+    /* margin-left: 1rem; */
     justify-content: center;
     align-items: center;
     transition-property: height, width;
     transition-duration: 0.3s;
     height: 5rem;
-    width: 80vw;
+    /* width: 80vw; */
     
   }
 
