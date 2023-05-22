@@ -113,6 +113,9 @@ export function pushAllItemstoDom() {
         description.contentEditable = true;
         removeBtn.style.display = "";
         overlay.addEventListener("click", function () {
+
+
+          
           overlay.classList.remove("active");
           note.style.zIndex = 1;
           note.style.position = "relative";

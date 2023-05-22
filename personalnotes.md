@@ -8,12 +8,57 @@ npm install --save-dev style-loader css-loader
 //getting started with eslint
 eslint --init
 
+Edit functionality WIP  
 
 
-//TODO 
-make myLibrary an object that has multiple arrays inside of it
-make a few buttons that change which array the modalpopulate function goes in
-pass in a parameter into the modal populate function that switches where the item populates and gives
-the individual items certain identifications that allow them to be swtiched at the same time
+const titledate = note.getAttribute("data-titledate");
+        const [title, date] = titledate.split("_");
 
-make those buttons also hide select elements that are not in those select arrays
+        const editedObject = {
+          title: notetitle,
+          date: notedate,
+          description: notedescription,
+        };
+
+        for (let key in myLibrary) {
+          if (Array.isArray(myLibrary[key])) {
+            const index = myLibrary[key].findIndex(
+              (item) => item.title === title && item.date === date
+            );
+            if (index !== -1) {
+              myLibrary[key][index] = editedObject;
+              break;
+            }
+          }
+        }
+
+
+   title.addEventListener("input", function () {
+      notetitle = title.innerHTML;
+    });
+
+    date.addEventListener("input", function () {
+      notedate = date.innerHTML;
+    });
+
+    description.addEventListener("input", function () {
+      notedescription = description.innerHTML;
+    });
+
+
+function overlayClickHandler() {
+  overlay.classList.remove("active");
+  note.style.zIndex = 1;
+  note.style.position = "relative";
+  note.classList.remove("focus");
+  description.style.display = "none";
+  removeBtn.style.display = "none";
+
+  console.log(notetitle);
+  console.log(notedate);
+  console.log(notedescription);
+
+  overlay.removeEventListener("click", overlayClickHandler);
+}
+
+overlay.addEventListener("click", overlayClickHandler, { once: true });
