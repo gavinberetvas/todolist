@@ -1,3 +1,4 @@
+import { remove } from "lodash";
 import { myLibrary } from "./modalPopulate";
 import { libraryDirectories } from "./modalPopulate";
 import { index } from "./switchdirectory";
@@ -49,13 +50,17 @@ function deleteButton(notetitle, notedate, notedescription) {
   removeBtn.innerHTML = "X";
 
   removeBtn.addEventListener("click", function () {
+    //maybethis???????
+    console.log(removeBtn.closest('[data-titledate]').getAttribute('data-titledate'));
+
     overlay.classList.remove("active");
     setTimeout(function () {
-      deleteObjectfromLibrary(notetitle, notedate);
+      deleteObjectfromLibrary(notetitle, notedate, removeBtn);
       overlay.classList.remove("active");
       removeBtn.closest(".card").remove();
       console.log(myLibrary.getAllObjects());
     }, 100);
+
   });
 
   return removeBtn;
@@ -63,11 +68,15 @@ function deleteButton(notetitle, notedate, notedescription) {
 
 //this function works fine before an edit, but then breaks after an edit. 
 
-function deleteObjectfromLibrary(notetitle, notedate) {
+function deleteObjectfromLibrary(notetitle, notedate, removeBtn) {
+  ///ATTEMPT
+  let testValue = removeBtn.closest('[data-titledate]').getAttribute('data-titledate');
+  let [title, date] = testValue.split("_");
+
   for (let key in myLibrary) {
     if (Array.isArray(myLibrary[key])) {
       const index = myLibrary[key].findIndex(
-        (item) => item.title == notetitle && item.date == notedate
+        (item) => item.title == title && item.date == date
       );
       if (index !== -1) {
         myLibrary[key].splice(index, 1);
@@ -137,9 +146,9 @@ export function pushAllItemstoDom() {
         let [title, date] = titledate.split("_");
 
         let editedObject = {
-          title: notetitle,
-          date: notedate,
-          description: notedescription,
+          title: `${notetitle}`,
+          date: `${notedate}`,
+          description: `${notedescription}`,
         };
 
         for (let key in myLibrary) {
@@ -154,6 +163,9 @@ export function pushAllItemstoDom() {
           }
         }
         ///newcodenotworkingideally
+        console.log(editedObject.title)
+        console.log(editedObject.date)
+        console.log(editedObject.description)
 
         overlay.classList.remove("active");
         note.style.zIndex = 1;
