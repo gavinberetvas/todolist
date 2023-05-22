@@ -35,14 +35,17 @@ const titledate = note.getAttribute("data-titledate");
 
    title.addEventListener("input", function () {
       notetitle = title.innerHTML;
+      console.log("notetitle");
     });
 
     date.addEventListener("input", function () {
       notedate = date.innerHTML;
+      console.log("notedate");
     });
 
     description.addEventListener("input", function () {
       notedescription = description.innerHTML;
+      console.log("notedescription");
     });
 
 

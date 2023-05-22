@@ -43,39 +43,6 @@ function pushtoDom() {
   document.getElementById("main-content").appendChild(note);
 }
 
-// function deleteButton(notetitle, notedate, notedescription) {
-//   const removeBtn = document.createElement("button");
-//   removeBtn.classList.add("button");
-//   removeBtn.classList.add("rmv");
-//   removeBtn.innerHTML = "X";
-
-//   removeBtn.setAttribute("data-title", notetitle);
-//   removeBtn.setAttribute("data-date", notedate);
-//   removeBtn.setAttribute("data-desc", notedescription);
-
-//   removeBtn.addEventListener("click", function (event) {
-//     const clickedBtn = event.target;
-//     const item = document.getElementById("overlay");
-//     const title = clickedBtn.getAttribute("data-title");
-//     const date = clickedBtn.getAttribute("data-date");
-//     const desc = clickedBtn.getAttribute("data-desc");
-//     overlay.classList.remove("active");
-  
-//     // deleteObjectfromLibrary(title, date);
-//     // overlay.classList.remove("active");
-//     // removeBtn.closest(".card").remove();
-//     // console.log(myLibrary.getAllObjects());
-//     setTimeout(function() {
-//       deleteObjectfromLibrary(title, date);
-//       overlay.classList.remove("active");
-//       removeBtn.closest(".card").remove();
-//       console.log(myLibrary.getAllObjects());
-//     }, 100);
-//   });
-
-//   return removeBtn;
-// }
-
 function deleteButton(notetitle, notedate, notedescription) {
   const removeBtn = document.createElement("button");
   removeBtn.classList.add("button", "rmv");
@@ -122,6 +89,21 @@ export function pushAllItemstoDom() {
     description.classList.add("description");
     description.innerHTML = notedescription;
     description.style.display = "none";
+
+    title.addEventListener("input", function () {
+      notetitle = title.innerHTML;
+      console.log(notetitle);
+    });
+
+    date.addEventListener("input", function () {
+      notedate = date.innerHTML;
+      console.log(notedate);
+    });
+
+    description.addEventListener("input", function () {
+      notedescription = description.innerHTML;
+      console.log(notedescription);
+    });
 
     note.addEventListener("click", function (event) {
         note.classList.add("focus");
