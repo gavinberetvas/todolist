@@ -15,17 +15,6 @@ function pushtoDom() {
   note.setAttribute("data-date", `${lastObj.date}`);
   note.classList.add("card");
   note.classList.add(index);
-
-  // note.addEventListener("click", function () {
-  //   // Event handler code
-  //   console.log(`clicked`);
-  //   if (description.style.display != "none") {
-  //     description.style.display = "none";
-  //   } else {
-  //     description.style.display = "";
-  //   }
-  // });
-
   const title = document.createElement("div");
   title.classList.add("title");
   title.innerHTML = `Title: ${notetitle}`;
@@ -79,7 +68,7 @@ function deleteButton(notetitle, notedate, notedescription) {
     setTimeout(function() {
       deleteObjectfromLibrary(title, date);
       overlay.classList.remove("active");
-      removeBtn.closest(".card").remove();h
+      removeBtn.closest(".card").remove();
       console.log(myLibrary.getAllObjects());
     }, 100);
   });
@@ -92,10 +81,13 @@ export function pushAllItemstoDom() {
 
   init.forEach((item) => {
     console.log(item);
-    const notetitle = item.title;
-    const notedate = item.date;
-    const notedescription = item.description;
+    let notetitle = item.title;
+    let notedate = item.date;
+    let notedescription = item.description;
     const note = document.createElement("div");
+
+    note.setAttribute("data-titledate", `${notetitle}_${notedate}`);
+
     note.classList.add("card");
     note.classList.add(index);
     const title = document.createElement("div");
