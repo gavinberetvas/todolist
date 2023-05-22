@@ -52,7 +52,7 @@ function deleteButton(notetitle, notedate, notedescription) {
   removeBtn.addEventListener("click", function () {
     //maybethis???????
     console.log(removeBtn.closest('[data-titledate]').getAttribute('data-titledate'));
-
+    ///worked!
     overlay.classList.remove("active");
     setTimeout(function () {
       deleteObjectfromLibrary(notetitle, notedate, removeBtn);
@@ -68,10 +68,12 @@ function deleteButton(notetitle, notedate, notedescription) {
 
 //this function works fine before an edit, but then breaks after an edit. 
 
-function deleteObjectfromLibrary(notetitle, notedate, removeBtn) {
+function deleteObjectfromLibrary(removeBtn) {
   ///ATTEMPT
+  ///SUCCESS!!!
   let testValue = removeBtn.closest('[data-titledate]').getAttribute('data-titledate');
   let [title, date] = testValue.split("_");
+  /////change
 
   for (let key in myLibrary) {
     if (Array.isArray(myLibrary[key])) {
