@@ -5,31 +5,31 @@ export let myLibrary = {
   "all": [],
   "today": [{
     title: '1title.value',
-    date: '1date.value',
+    date: '2023-05-21',
     description: 'description.value',
   },{
     title: '2title.value',
-    date: '2date.value',
+    date: '2024-07-18',
     description: 'description.value',
   }],
 
   "tomorrow": [{
     title: '3title.value',
-    date: '3date.value',
+    date: '2224-05-18',
     description: 'description.value',
   },{
     title: '4title.value',
-    date: '4date.value',
+    date: '1924-10-18',
     description: 'description.value',
   }],
 
  "nextday": [{
     title: '5title.value',
-    date: '5date.value',
+    date: '1000-07-18',
     description: 'description.value',
   },{
     title: '6title.value',
-    date: '6date.value',
+    date: '2024-01-01',
     description: 'description.value',
   }],
 

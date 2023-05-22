@@ -52,7 +52,7 @@ function deleteButton(notetitle, notedate, notedescription) {
   removeBtn.addEventListener("click", function () {
     //maybethis???????
     console.log(removeBtn.closest('[data-titledate]').getAttribute('data-titledate'));
-    ///worked!
+
     overlay.classList.remove("active");
     setTimeout(function () {
       deleteObjectfromLibrary(notetitle, notedate, removeBtn);
@@ -68,12 +68,10 @@ function deleteButton(notetitle, notedate, notedescription) {
 
 //this function works fine before an edit, but then breaks after an edit. 
 
-function deleteObjectfromLibrary(removeBtn) {
+function deleteObjectfromLibrary(notetitle, notedate, removeBtn) {
   ///ATTEMPT
-  ///SUCCESS!!!
   let testValue = removeBtn.closest('[data-titledate]').getAttribute('data-titledate');
   let [title, date] = testValue.split("_");
-  /////change
 
   for (let key in myLibrary) {
     if (Array.isArray(myLibrary[key])) {
@@ -107,9 +105,10 @@ export function pushAllItemstoDom() {
     const title = document.createElement("div");
     title.classList.add("title");
     title.innerHTML = `${notetitle}`;
-    const date = document.createElement("div");
+    const date = document.createElement("input");
     date.classList.add("date");
-    date.innerHTML = `${notedate}`;
+    date.type = "date";
+    date.value = `${notedate}`;
     const description = document.createElement("div");
     description.classList.add("description");
     description.innerHTML = notedescription;
@@ -121,7 +120,7 @@ export function pushAllItemstoDom() {
     });
 
     date.addEventListener("input", function () {
-      notedate = date.innerHTML;
+      notedate = date.value;
       console.log(notedate);
     });
 
@@ -137,7 +136,7 @@ export function pushAllItemstoDom() {
       note.style.position = "relative";
       overlay.classList.add("active");
       title.contentEditable = true;
-      date.contentEditable = true;
+      date.disabled = false;
       description.contentEditable = true;
       removeBtn.style.display = "";
       overlay.addEventListener("click", function () {
