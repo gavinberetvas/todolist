@@ -1,5 +1,5 @@
 // import { remove } from "lodash";
-import { myLibrary } from "./modalPopulate";
+import { myLibrary } from "./myLibraryObject";
 // import { libraryDirectories } from "./modalPopulate";
 import { index } from "./switchdirectory";
 // import { v4 as uuidv4 } from "uuid";

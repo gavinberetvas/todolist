@@ -1,7 +1,7 @@
 import { hideItems } from "./switchdirectory";
 import { makeCurrentDirectory } from "./switchdirectory";
 import { index } from "./switchdirectory";
-import { myLibrary } from "./modalPopulate";
+import { myLibrary } from "./myLibraryObject";
 import { v4 as uuidv4 } from "uuid";
 
 export function newProjectButton() {

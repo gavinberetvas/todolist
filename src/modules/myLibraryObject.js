@@ -125,21 +125,21 @@ export let myLibrary = {
   },
 };
 
-//this will be obsolete soon when using object methods
-function modalPopulate() {
-  event.preventDefault();
+// //this will be obsolete soon when using object methods
+// function modalPopulate() {
+//   event.preventDefault();
 
-  const { title, date, description } = event.target.elements;
+//   const { title, date, description } = event.target.elements;
 
-  myLibrary[index].push({
-    title: title.value,
-    date: date.value,
-    description: description.value,
-  });
-  // formReset();
-  console.log(myLibrary);
-  modal.classList.remove("active");
-  overlay.classList.remove("active");
-}
+//   myLibrary[index].push({
+//     title: title.value,
+//     date: date.value,
+//     description: description.value,
+//   });
+//   // formReset();
+//   console.log(myLibrary);
+//   modal.classList.remove("active");
+//   overlay.classList.remove("active");
+// }
 
-export default modalPopulate;
+// export default modalPopulate;
