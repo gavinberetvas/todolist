@@ -26,6 +26,23 @@ gap: 3rem;
 max-width: 15rem;
 }
 
+#projects {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.projectcard {
+  display: flex;
+  justify-content: space-between;
+}
+
+.activeproject {
+  color: rgb(151, 150, 150);
+  font-size: 110%;
+  font-weight: bold;
+}
+
 .current {
   font-size: 1.5rem;
 }
