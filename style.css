@@ -111,6 +111,7 @@ max-width: 15rem;
     width: 93%;
     padding: 2rem 1rem;
     background-color: #fff;
+    max-height: 3rem;
   }
 
   #todomaker2 {
