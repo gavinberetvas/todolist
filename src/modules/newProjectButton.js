@@ -2,7 +2,7 @@ import { hideItems } from "./switchdirectory";
 import { makeCurrentDirectory } from "./switchdirectory";
 import { index } from "./switchdirectory";
 import { myLibrary } from "./modalPopulate";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 export function newProjectButton() {
   document.getElementById("newproject").addEventListener("click", () => {
@@ -24,6 +24,7 @@ export function newProjectButton() {
     newProjectName.innerHTML = `New_Project`;
     deleteButton.classList.add("editProject");
     deleteButton.innerHTML = `X`;
+    deleteButton.dataset.delete = `${uuid}`;
     deleteButton.style.zIndex = 2;
 
     newProject.addEventListener("click", () => {
@@ -38,21 +39,43 @@ export function newProjectButton() {
       newProjectName.focus();
     });
 
-    newProjectName.addEventListener("input", () => {
-      let projectName = newProjectName.innerHTML;
-      console.log(projectName);
-    });
+    // newProjectName.addEventListener("input", () => {
+    //   console.log(projectName);
+    // });
 
     newProjectName.addEventListener("blur", () => {
       let projectName = newProjectName.innerHTML;
       newProjectName.classList.remove("activeproject");
+      newProjectName.classList.remove("current");
       console.log("Blur event:", projectName);
     });
 
     deleteButton.addEventListener("click", (event) => {
+        const deleteAttributeValue = deleteButton.dataset.delete;
+        
       event.stopPropagation();
-      console.log("delete button clicked");
-      deleteButton.closest(".projectcard").remove();
+
+      const confirmation = window.confirm("Are you sure you want to delete this project?");
+
+//       delete myLibrary[uuid];
+//       deleteButton.closest(".projectcard").remove();
+
+//       deleteButton.dataset.delete = `${uuid}`;
+//       const elements = Array.from(document.getElementsByClassName(deleteAttributeValue));
+//   elements.forEach((element) => {
+//     element.remove();
+//   });
+
+if (confirmation) {
+    delete myLibrary[uuid];
+    deleteButton.closest(".projectcard").remove();
+  
+    deleteButton.dataset.delete = `${uuid}`;
+    const elements = Array.from(document.getElementsByClassName(deleteAttributeValue));
+    elements.forEach((element) => {
+      element.remove();
+    });
+  }
     });
 
     let directories = document.querySelector("#projects");
