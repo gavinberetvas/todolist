@@ -72,7 +72,7 @@ export function newProjectButton() {
   });
 }
 
-// chatgpt version
+// chatgpt cleaned up version
 // function newProjectButton() {
 //   const newProjectBtn = document.getElementById("newproject");
 
