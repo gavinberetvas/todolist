@@ -25,6 +25,7 @@ description
 (tags?)
 UUID
 test
+testing 12
 
 .makeNewNote
   needs to make a new object within the array corresponding to a key. 
