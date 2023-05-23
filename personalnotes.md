@@ -51,6 +51,8 @@ UUID
 .deleteProject
   should delete a key value pair from the object
 
+.changeindex? or pass (index) as an argument on click like get data-value from button...
+
   and it would also be good if the DOM was made more streamlined as well/
 
   //with destucturing
