@@ -47,9 +47,20 @@ form.addEventListener("submit", (event) => {
     pushtoDom();
     // init();
   });
-  
-
 }
+
+// form.addEventListener("submit", (event) => {
+//   // event.preventDefault();
+
+//   setTimeout(() => {
+//     modalPopulate();
+//     pushtoDom();
+//     // init();
+//   }, 100);
+// });
+// }
+
+
 export default modal;
 
 //thanks to webdevsimplified for the modal tutorial. 

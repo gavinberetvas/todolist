@@ -33,6 +33,8 @@ export let myLibrary = {
     description: 'description.value',
   }],
 
+  "New_Project": [],
+
   iterateObjectKeys: function(obj) {
     const keys = [];
     

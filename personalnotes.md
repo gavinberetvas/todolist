@@ -58,3 +58,29 @@ note.addEventListener("click", function (event) {
         console.log(myLibrary.getAllObjects());
       });
     });
+
+
+
+    //target the correct key in the object using the former object name
+      //change the old object name to the new object name
+      //update the dataset value of project to be the new object name.
+
+      //   let val = newProject.getAttribute("data-project");
+      //   myLibrary[projectName] = myLibrary[val];
+      //   delete myLibrary[val];
+      //   newProject.dataset.project = `${projectName}`;
+      ///
+      //
+      //
+      //
+      //   let oldProjectName = newProject.getAttribute("data-project");
+      //   let updatedProjectName = newProjectName.innerHTML;
+
+      //   // Change the key in the myLibrary object
+      //   myLibrary[updatedProjectName] = myLibrary[oldProjectName];
+      //   delete myLibrary[oldProjectName];
+
+      //   // Update the dataset value of project
+      //   newProject.dataset.project = updatedProjectName;
+      //   index = updatedProjectName;
+      //   console.log(`NEW INDEX VALUE     ${index}`)

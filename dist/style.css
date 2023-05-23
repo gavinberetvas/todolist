@@ -98,6 +98,8 @@ max-width: 15rem;
   }
   
   #main-content {
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
   }
 
@@ -109,6 +111,10 @@ max-width: 15rem;
     width: 93%;
     padding: 2rem 1rem;
     background-color: #fff;
+  }
+
+  #todomaker2 {
+    order: 1; 
   }
 
   .rmv, .edit {

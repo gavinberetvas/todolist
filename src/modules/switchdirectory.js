@@ -23,7 +23,7 @@ function switchdirectory() {
   });
 }
 
-function hideItems() {
+ export function hideItems() {
   const elements = document.getElementsByClassName("card");
   for (let i = 0; i < elements.length; i++) {
     const element = elements[i];
@@ -36,7 +36,7 @@ function hideItems() {
   }
 }
 
-function makeCurrentDirectory() {
+export function makeCurrentDirectory() {
   event.target.classList.add("current");
   const buttons = document.querySelectorAll(".directory");
   buttons.forEach((button) => {
@@ -44,9 +44,6 @@ function makeCurrentDirectory() {
       button.classList.remove("current");
     }
   });
-  // on click
-  // deletes current from other buttons
-  // and adds current to this button
 }
 
 function showAll() {
