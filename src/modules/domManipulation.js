@@ -6,6 +6,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 const overlay = document.getElementById("overlay");
 
+
+//It would be cool if I could have just one pushToDom function that I then iterate through multiple times.
+//EDIT Functionality needs a lot of cleaning
 function pushtoDom() {
   const lastObj = myLibrary[index][myLibrary[index].length - 1];
   let notetitle = lastObj.title;
@@ -101,13 +104,13 @@ function pushtoDom() {
   document.getElementById("main-content").appendChild(note);
 }
 
+//this is actually pretty good. It needs to use UUIDS though.
 function deleteButton(notetitle, notedate, notedescription) {
   const removeBtn = document.createElement("button");
   removeBtn.classList.add("button", "rmv");
   removeBtn.innerHTML = "X";
 
   removeBtn.addEventListener("click", function () {
-    //maybethis???????
     console.log(
       removeBtn.closest("[data-titledate]").getAttribute("data-titledate")
     );
@@ -123,8 +126,6 @@ function deleteButton(notetitle, notedate, notedescription) {
 
   return removeBtn;
 }
-
-//this function works fine before an edit, but then breaks after an edit.
 
 function deleteObjectfromLibrary(notetitle, notedate, removeBtn) {
   ///ATTEMPT
@@ -146,8 +147,7 @@ function deleteObjectfromLibrary(notetitle, notedate, removeBtn) {
   }
 }
 
-///
-
+//this is only used on init...
 export function pushAllItemstoDom() {
   let init = myLibrary.getAllObjects();
 
@@ -245,53 +245,5 @@ export function pushAllItemstoDom() {
     document.getElementById("main-content").appendChild(note);
   });
 }
-
-// function handleClick(event, removeBtn, description) {
-//   let note = event.target;
-//   note.classList.add("focus");
-//   description.style.display = "";
-//   note.style.zIndex = 10;
-//   note.style.position = "relative";
-//   overlay.classList.add("active");
-//   title.contentEditable = true;
-//   date.disabled = false;
-//   description.contentEditable = true;
-//   removeBtn.style.display = "";
-
-//   overlay.addEventListener("click", handleOverlayClick);
-// }
-
-// function handleOverlayClick(note) {
-//   // let titledate = note.getAttribute("data-titledate");
-//   let titledate = = event.target.closest("[data-titledate]");
-//   let [title, date] = titledate.split("_");
-
-//   let editedObject = {
-//     title: `${notetitle}`,
-//     date: `${notedate}`,
-//     description: `${notedescription}`,
-//   };
-
-//   for (let key in myLibrary) {
-//     if (Array.isArray(myLibrary[key])) {
-//       const index = myLibrary[key].findIndex(
-//         (item) => item.title === title && item.date === date
-//       );
-//       if (index !== -1) {
-//         myLibrary[key][index] = editedObject;
-//         break;
-//       }
-//     }
-//   }
-//   overlay.classList.remove("active");
-//         note.style.zIndex = 1;
-//         note.style.position = "relative";
-//         note.classList.remove("focus");
-//         description.style.display = "none";
-//         //newcode
-//         note.setAttribute("data-titledate", `${notetitle}_${notedate}`);
-//         ///newcode
-//         console.log(myLibrary.getAllObjects());
-// }
 
 export default pushtoDom;

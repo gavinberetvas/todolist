@@ -8,79 +8,55 @@ npm install --save-dev style-loader css-loader
 //getting started with eslint
 eslint --init
 
-note.addEventListener("click", function (event) {
-      note.classList.add("focus");
-      description.style.display = "";
-      note.style.zIndex = 10;
-      note.style.position = "relative";
-      overlay.classList.add("active");
-      title.contentEditable = true;
-      date.disabled = false;
-      description.contentEditable = true;
-      removeBtn.style.display = "";
-      overlay.addEventListener("click", function () {
+on reflection realizing the entire project would probably be made easier using object methods.
 
-        //newcodenotworkingideally
+so far I have 6 things I want to do that interact with the library in some way.
+Adding, editing, and deleting notes.
+adding, editing and deleting projects.
 
-        let titledate = note.getAttribute("data-titledate");
-        let [title, date] = titledate.split("_");
+Verysimply: 
 
-        let editedObject = {
-          title: `${notetitle}`,
-          date: `${notedate}`,
-          description: `${notedescription}`,
-        };
+the objects need to have 
 
-        for (let key in myLibrary) {
-          if (Array.isArray(myLibrary[key])) {
-            const index = myLibrary[key].findIndex(
-              (item) => item.title === title && item.date === date
-            );
-            if (index !== -1) {
-              myLibrary[key][index] = editedObject;
-              break;
-            }
-          }
-        }
-        ///newcodenotworkingideally
-        console.log(editedObject.title)
-        console.log(editedObject.date)
-        console.log(editedObject.description)
-
-        overlay.classList.remove("active");
-        note.style.zIndex = 1;
-        note.style.position = "relative";
-        note.classList.remove("focus");
-        description.style.display = "none";
-        //newcode
-        note.setAttribute("data-titledate", `${notetitle}_${notedate}`);
-        ///newcode
-        console.log(myLibrary.getAllObjects());
-      });
-    });
+title
+dueDate
+Priority
+description
+(tags?)
+UUID
 
 
+.makeNewNote
+  needs to make a new object within the array corresponding to a key. 
 
-    //target the correct key in the object using the former object name
-      //change the old object name to the new object name
-      //update the dataset value of project to be the new object name.
+  e.g
 
-      //   let val = newProject.getAttribute("data-project");
-      //   myLibrary[projectName] = myLibrary[val];
-      //   delete myLibrary[val];
-      //   newProject.dataset.project = `${projectName}`;
-      ///
-      //
-      //
-      //
-      //   let oldProjectName = newProject.getAttribute("data-project");
-      //   let updatedProjectName = newProjectName.innerHTML;
+  addObjectToKey: function(keyName, newObject) {
+    if (Array.isArray(this[keyName])) {
+      this[keyName].push(newObject);
+    } else {
+      console.log(`"${keyName}" is not an array.`);
+    }
+  }
+  
+.editNote
+  needs to be able to edit the values within the nested objects
+.deleteNote
+  needs to be able to delete a specific note within the arrays. 
 
-      //   // Change the key in the myLibrary object
-      //   myLibrary[updatedProjectName] = myLibrary[oldProjectName];
-      //   delete myLibrary[oldProjectName];
+.makeNewProject
+  should make a new key with a value of arrays.
+.editProject
+  should be able to edit the title of the key.
+.deleteProject
+  should delete a key value pair from the object
 
-      //   // Update the dataset value of project
-      //   newProject.dataset.project = updatedProjectName;
-      //   index = updatedProjectName;
-      //   console.log(`NEW INDEX VALUE     ${index}`)
+  and it would also be good if the DOM was made more streamlined as well/
+
+  //with destucturing
+const {name, email, phone} = employee;
+
+//without destucturing
+const name = employee.name;
+const email = employee.email;
+const phone = employee.phone;

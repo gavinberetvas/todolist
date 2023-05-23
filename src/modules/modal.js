@@ -45,20 +45,8 @@ function closeModal(modal) {
 form.addEventListener("submit", (event) => {
     modalPopulate();
     pushtoDom();
-    // init();
   });
 }
-
-// form.addEventListener("submit", (event) => {
-//   // event.preventDefault();
-
-//   setTimeout(() => {
-//     modalPopulate();
-//     pushtoDom();
-//     // init();
-//   }, 100);
-// });
-// }
 
 
 export default modal;

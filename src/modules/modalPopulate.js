@@ -62,6 +62,8 @@ export let myLibrary = {
   },
 };
 
+
+//this will be obsolete soon when using object methods
 function modalPopulate() {
   event.preventDefault();
 
