@@ -47,6 +47,8 @@ form.addEventListener("submit", (event) => {
     event.preventDefault();
     myLibrary.newNote(event, index);
     pushtoDom();
+
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
   });
 }
 

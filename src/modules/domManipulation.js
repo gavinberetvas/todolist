@@ -18,8 +18,18 @@ function pushtoDom() {
 }
 
 export function pushAllItemstoDom() {
-  //TODO
-  //this doesnt succesfully upload the items to the correct section
+ ///newcode////
+
+  // let storedObject = localStorage.getItem("myLibrary");
+
+  // if (storedObject === null || storedObject === undefined) {
+  //   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+  //   storedObject = JSON.stringify(myLibrary);
+  // } else {
+  //   myLibrary = JSON.parse(storedObject);
+  // }
+  // /////newcode//////
+
   let init = myLibrary.getAllObjects();
 
   init.forEach((item) => {
@@ -33,7 +43,7 @@ export function pushAllItemstoDom() {
       notetitle,
       notedate,
       notedescription,
-      noteID,
+      noteID
     );
 
     document.getElementById("main-content").appendChild(newNote);
@@ -42,7 +52,6 @@ export function pushAllItemstoDom() {
 
 function createElements(notetitle, notedate, notedescription, noteID) {
   const note = document.createElement("div");
-
 
   note.setAttribute("data-id", `${noteID}`);
   note.classList.add("card");

@@ -103,18 +103,6 @@ export let myLibrary = {
     myLibrary[uuid] = [];
   },
 
-  // iterateObjectKeys: function (obj) {
-  //   const keys = [];
-
-  //   for (let key in obj) {
-  //     if (obj.hasOwnProperty(key)) {
-  //       keys.push(key);
-  //     }
-  //   }
-
-  //   return keys;
-  // },
-
   getAllObjects: function () {
     const objects = [];
 
@@ -127,4 +115,8 @@ export let myLibrary = {
     console.log(objects);
     return objects;
   },
+
+  saveToLocalStorage: function() {
+    localStorage.setItem('myLibrary', JSON.stringify(this));
+  }
 };

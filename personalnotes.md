@@ -8,59 +8,76 @@ npm install --save-dev style-loader css-loader
 //getting started with eslint
 eslint --init
 
-on reflection realizing the entire project would probably be made easier using object methods.
-
-so far I have 6 things I want to do that interact with the library in some way.
-Adding, editing, and deleting notes.
-adding, editing and deleting projects.
-
-Verysimply: 
-
-the objects need to have 
-
-title
-dueDate
-Priority
-description
-(tags?)
-UUID
-test
-alternative test
 
 
-.makeNewNote
-  needs to make a new object within the array corresponding to a key. 
+Local storage breaks the object methods so I need to add them on initialization: 
 
-  e.g
+myLibrary.newNote = function(event, index) {
+  event.preventDefault();
+  const { title, date, description } = event.target.elements;
+  const uuid = uuidv4();
 
-  addObjectToKey: function(keyName, newObject) {
-    if (Array.isArray(this[keyName])) {
-      this[keyName].push(newObject);
-    } else {
-      console.log(`"${keyName}" is not an array.`);
+  this[index].push({
+    title: title.value,
+    date: date.value,
+    description: description.value,
+    id: uuid,
+  });
+  console.log(this);
+  modal.classList.remove("active");
+  overlay.classList.remove("active");
+};
+
+myLibrary.editNote = function(note, notetitle, notedate, notedescription) {
+  let itemID = note.getAttribute("data-id");
+
+  let editedObject = {
+    title: `${notetitle}`,
+    date: `${notedate}`,
+    description: `${notedescription}`,
+  };
+
+  for (let key in myLibrary) {
+    if (Array.isArray(myLibrary[key])) {
+      const index = myLibrary[key].findIndex((item) => (item.id = itemID));
+      if (index !== -1) {
+        myLibrary[key][index] = editedObject;
+        break;
+      }
     }
   }
-  
-.editNote
-  needs to be able to edit the values within the nested objects
-.deleteNote
-  needs to be able to delete a specific note within the arrays. 
+};
 
-.makeNewProject
-  should make a new key with a value of arrays.
-.editProject
-  should be able to edit the title of the key.
-.deleteProject
-  should delete a key value pair from the object
+myLibrary.deleteNote = function(removeBtn) {
+  let idValue = removeBtn.closest("[data-id]").getAttribute("data-id");
+  for (let key in myLibrary) {
+    if (Array.isArray(myLibrary[key])) {
+      const index = myLibrary[key].findIndex((item) => item.id == idValue);
+      if (index !== -1) {
+        myLibrary[key].splice(index, 1);
+        return;
+      }
+    }
+  }
+};
 
-.changeindex? or pass (index) as an argument on click like get data-value from button...
+myLibrary.newProject = function(uuid) {
+  myLibrary[uuid] = [];
+};
 
-  and it would also be good if the DOM was made more streamlined as well/
+myLibrary.getAllObjects = function() {
+  const objects = [];
 
-  //with destucturing
-const {name, email, phone} = employee;
+  for (let key in this) {
+    if (this.hasOwnProperty(key) && Array.isArray(this[key])) {
+      objects.push(...this[key]);
+    }
+  }
 
-//without destucturing
-const name = employee.name;
-const email = employee.email;
-const phone = employee.phone;
+  console.log(objects);
+  return objects;
+};
+
+myLibrary.saveToLocalStorage = function() {
+  localStorage.setItem('myLibrary', JSON.stringify(this));
+};
