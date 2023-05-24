@@ -66,25 +66,34 @@ export let myLibrary = {
       date: date.value,
       description: description.value,
       id: uuid,
-      filter: []
+      // filter: [],
     });
     console.log(this);
     modal.classList.remove("active");
     overlay.classList.remove("active");
   },
 
-  editNote: function (note, notetitle, notedate, notedescription) {
+  editNote: function (
+    note,
+    notetitle,
+    notedate,
+    notedescription,
+    noteID,
+    // noteFilter
+  ) {
     let itemID = note.getAttribute("data-id");
 
     let editedObject = {
       title: `${notetitle}`,
       date: `${notedate}`,
       description: `${notedescription}`,
+      id: itemID,
+      // filter: noteFilter,
     };
 
     for (let key in myLibrary) {
       if (Array.isArray(myLibrary[key])) {
-        const index = myLibrary[key].findIndex((item) => (item.id = itemID));
+        const index = myLibrary[key].findIndex((item) => (item.id == itemID));
         if (index !== -1) {
           myLibrary[key][index] = editedObject;
           break;
@@ -123,9 +132,9 @@ export let myLibrary = {
     return objects;
   },
 
-  saveToLocalStorage: function() {
-    localStorage.setItem('myLibrary', JSON.stringify(this));
-  }
+  saveToLocalStorage: function () {
+    localStorage.setItem("myLibrary", JSON.stringify(this));
+  },
 };
 
 export function loadFromLocalStorage() {
@@ -146,25 +155,27 @@ export function loadFromLocalStorage() {
         date: date.value,
         description: description.value,
         id: uuid,
-        filter: []
+        filter: [],
       });
       console.log(this);
       modal.classList.remove("active");
       overlay.classList.remove("active");
     };
 
-    myLibrary.editNote = function (note, notetitle, notedate, notedescription) {
+    myLibrary.editNote = function (note, notetitle, notedate, notedescription, noteFilter) {
       let itemID = note.getAttribute("data-id");
 
       let editedObject = {
         title: `${notetitle}`,
         date: `${notedate}`,
         description: `${notedescription}`,
+        id: itemID,
+        filter: noteFilter,
       };
 
       for (let key in myLibrary) {
         if (Array.isArray(myLibrary[key])) {
-          const index = myLibrary[key].findIndex((item) => (item.id = itemID));
+          const index = myLibrary[key].findIndex((item) => (item.id == itemID));
           if (index !== -1) {
             myLibrary[key][index] = editedObject;
             break;

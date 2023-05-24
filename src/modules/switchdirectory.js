@@ -1,5 +1,7 @@
 import { myLibrary } from "./myLibraryObject";
 
+
+///TODO: this needs to be different.
 export let index = "all";
 
 //TODO: TODAY AND TOMORROW DIRECTORIES NEED TO FILTER BY DATE NOT BY STRING
@@ -56,15 +58,15 @@ function switchdirectory() {
   }
 }
 
-export function newFilterItems() {
-  const elements = myLibrary.getAllObjects();
-  elements.forEach((item) => {
-    if(item.filter.contains(filter)) {
-      item.style.display = "";
-    } else {
-      element.style.display = "none";
-    }
-  });
+// export function newFilterItems() {
+//   const elements = myLibrary.getAllObjects();
+//   elements.forEach((item) => {
+//     if(item.filter.contains(filter)) {
+//       item.style.display = "";
+//     } else {
+//       element.style.display = "none";
+//     }
+//   });
 
   // for (let i = 0; i < elements.length; i++) {
   //   const element = elements[i];
@@ -74,8 +76,8 @@ export function newFilterItems() {
   //   } else {
   //     element.style.display = "none";
   //   }
-  // }
-}
+//   // }
+// }
 
 export function makeCurrentDirectory() {
   event.target.classList.add("current");

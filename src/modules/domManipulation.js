@@ -30,6 +30,13 @@ export function pushAllItemstoDom() {
 
   init.forEach((item) => {
     console.log(item);
+
+    //this time! 
+    //this works with the initial items, but it breaks for additional items...
+    //instead lets do it with the dates.
+    // index = item.id;
+    // end this time
+
     let notetitle = item.title;
     let notedate = item.date;
     let notedescription = item.description;
@@ -62,15 +69,16 @@ function createElements(
   note.setAttribute("data-id", `${noteID}`);
   note.classList.add("card");
 
-  //this is becoming redundant...
+  //this is what I want to change...
+  //maybe use data-keys?
   note.classList.add(index);
 
-  //ok. This works.
-  console.log(noteFilter);
+  // //ok. This does not work.
+  // console.log(noteFilter);
 
-  noteFilter.forEach((filter) => {
-    note.classList.add(filter);
-  });
+  // noteFilter.forEach((filter) => {
+  //   note.classList.add(filter);
+  // });
 
   console.log(`INDEX: ${index}`);
   console.log(`NOTEID: ${noteID}`);
@@ -121,7 +129,7 @@ function createElements(
     removeBtn.style.display = "";
 
     overlay.addEventListener("click", function () {
-      myLibrary.editNote(note, notetitle, notedate, notedescription, noteID);
+      myLibrary.editNote(note, notetitle, notedate, notedescription, noteID, noteFilter);
 
       overlay.classList.remove("active");
       note.style.zIndex = 1;
@@ -138,7 +146,7 @@ function createElements(
   //TODO: figure out why this breaks the code: 
 
   // let checkbox = document.createElement("input");
-  // checkbox.type = "checkbox";
+  // checkbox.type = "textarea";
   // checkbox.classList.add("circular-checkbox");
 
 // these three lines above break the local storage for some reason?
