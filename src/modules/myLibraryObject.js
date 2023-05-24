@@ -1,5 +1,5 @@
 // import { keys } from "lodash";
-import { index } from "./switchdirectory";
+// import { index } from "./switchdirectory";
 import { v4 as uuidv4 } from "uuid";
 
 export let myLibrary = {
@@ -9,13 +9,13 @@ export let myLibrary = {
       title: "1title.value",
       date: "2023-05-21",
       description: "description.value",
-      id: "fddf5b8a-95e6-4fba-b703-dbd8f2edb8b1",
+      id: "today",
     },
     {
       title: "2title.value",
       date: "2024-07-18",
       description: "description.value",
-      id: "fddf5b8a-95e6-4fba-b703-dbd8f2edb8b2",
+      id: "today",
     },
   ],
 
@@ -24,13 +24,13 @@ export let myLibrary = {
       title: "3title.value",
       date: "2224-05-18",
       description: "description.value",
-      id: "fddf5b8a-95e6-4fba-b703-dbd8f2edb8b3",
+      id: "tomorrow",
     },
     {
       title: "4title.value",
       date: "1924-10-18",
       description: "description.value",
-      id: "fddf5b8a-95e6-4fba-b703-dbd8f2edb8b4",
+      id: "tomorrow",
     },
   ],
 
@@ -39,7 +39,7 @@ export let myLibrary = {
       title: "5title.value",
       date: "1000-07-18",
       description: "description.value",
-      id: "fddf5b8a-95e6-4fba-b703-dbd8f2edb8b5",
+      id: "tomorrwkewe",
     },
     {
       title: "6title.value",
@@ -99,17 +99,21 @@ export let myLibrary = {
     }
   },
 
-  iterateObjectKeys: function (obj) {
-    const keys = [];
-
-    for (let key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        keys.push(key);
-      }
-    }
-
-    return keys;
+  newProject: function (uuid) {
+    myLibrary[uuid] = [];
   },
+
+  // iterateObjectKeys: function (obj) {
+  //   const keys = [];
+
+  //   for (let key in obj) {
+  //     if (obj.hasOwnProperty(key)) {
+  //       keys.push(key);
+  //     }
+  //   }
+
+  //   return keys;
+  // },
 
   getAllObjects: function () {
     const objects = [];
@@ -124,22 +128,3 @@ export let myLibrary = {
     return objects;
   },
 };
-
-// //this will be obsolete soon when using object methods
-// function modalPopulate() {
-//   event.preventDefault();
-
-//   const { title, date, description } = event.target.elements;
-
-//   myLibrary[index].push({
-//     title: title.value,
-//     date: date.value,
-//     description: description.value,
-//   });
-//   // formReset();
-//   console.log(myLibrary);
-//   modal.classList.remove("active");
-//   overlay.classList.remove("active");
-// }
-
-// export default modalPopulate;

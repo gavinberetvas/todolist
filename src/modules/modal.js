@@ -44,7 +44,6 @@ function closeModal(modal) {
 }
 
 form.addEventListener("submit", (event) => {
-    // modalPopulate();
     event.preventDefault();
     myLibrary.newNote(event, index);
     pushtoDom();
@@ -52,5 +51,3 @@ form.addEventListener("submit", (event) => {
 }
 
 export default modal;
-
-//thanks to webdevsimplified for the modal tutorial. 

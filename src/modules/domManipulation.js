@@ -42,9 +42,18 @@ export function pushAllItemstoDom() {
 
 function createElements(notetitle, notedate, notedescription, noteID) {
   const note = document.createElement("div");
+
+
   note.setAttribute("data-id", `${noteID}`);
   note.classList.add("card");
+
   note.classList.add(index);
+  console.log(`INDEX: ${index}`);
+  console.log(`NOTEID: ${noteID}`);
+
+  //Testing the following line of code to see if solves the lack of sorting items properly on init
+  //it does...but im not entirely sure how.
+  note.classList.add(noteID);
 
   const title = document.createElement("div");
   title.classList.add("title");
