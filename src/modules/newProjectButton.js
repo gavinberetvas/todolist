@@ -75,4 +75,3 @@ export function newProjectButton() {
     directories.appendChild(newProject);
   });
 }
-
