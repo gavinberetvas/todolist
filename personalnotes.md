@@ -10,74 +10,21 @@ eslint --init
 
 
 
-Local storage breaks the object methods so I need to add them on initialization: 
+Local storage breaks the object methods so I need to add them on initialization?
 
-myLibrary.newNote = function(event, index) {
-  event.preventDefault();
-  const { title, date, description } = event.target.elements;
-  const uuid = uuidv4();
+TODO: local storage and 
+      hardcoded filters: e.g. today, this week, important, completed.
+      priority 
+      completed button
+      project object
 
-  this[index].push({
-    title: title.value,
-    date: date.value,
-    description: description.value,
-    id: uuid,
-  });
-  console.log(this);
-  modal.classList.remove("active");
-  overlay.classList.remove("active");
-};
+      
 
-myLibrary.editNote = function(note, notetitle, notedate, notedescription) {
-  let itemID = note.getAttribute("data-id");
+e.g. projects {
+  ID: 1234567890-98765432
+  title: New_Project_1,
 
-  let editedObject = {
-    title: `${notetitle}`,
-    date: `${notedate}`,
-    description: `${notedescription}`,
-  };
+  and so on...
+}
 
-  for (let key in myLibrary) {
-    if (Array.isArray(myLibrary[key])) {
-      const index = myLibrary[key].findIndex((item) => (item.id = itemID));
-      if (index !== -1) {
-        myLibrary[key][index] = editedObject;
-        break;
-      }
-    }
-  }
-};
-
-myLibrary.deleteNote = function(removeBtn) {
-  let idValue = removeBtn.closest("[data-id]").getAttribute("data-id");
-  for (let key in myLibrary) {
-    if (Array.isArray(myLibrary[key])) {
-      const index = myLibrary[key].findIndex((item) => item.id == idValue);
-      if (index !== -1) {
-        myLibrary[key].splice(index, 1);
-        return;
-      }
-    }
-  }
-};
-
-myLibrary.newProject = function(uuid) {
-  myLibrary[uuid] = [];
-};
-
-myLibrary.getAllObjects = function() {
-  const objects = [];
-
-  for (let key in this) {
-    if (this.hasOwnProperty(key) && Array.isArray(this[key])) {
-      objects.push(...this[key]);
-    }
-  }
-
-  console.log(objects);
-  return objects;
-};
-
-myLibrary.saveToLocalStorage = function() {
-  localStorage.setItem('myLibrary', JSON.stringify(this));
-};
+https://mooniidev.github.io/todo-list/#

@@ -6,11 +6,14 @@ import { myLibrary } from "./modules/myLibraryObject";
 import { pushAllItemstoDom } from "./modules/domManipulation";
 import { newProjectButton } from "./modules/newProjectButton";
 
-// loadFromLocalStorage();
+
+
 
 modal();
 switchdirectory();
 newProjectButton();
+
+// loadFromLocalStorage();
 
 // window.addEventListener("beforeunload", function () {
 //   myLibrary.saveToLocalStorage();
