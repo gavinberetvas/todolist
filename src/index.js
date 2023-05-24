@@ -7,10 +7,10 @@ import { pushAllItemstoDom } from "./modules/domManipulation";
 import { newProjectButton } from "./modules/newProjectButton";
 import { loadFromLocalStorage } from "./modules/myLibraryObject";
 
-// test();
 modal();
 switchdirectory();
 newProjectButton();
+
 loadFromLocalStorage();
 pushAllItemstoDom();
 
@@ -18,23 +18,8 @@ window.addEventListener("beforeunload", function () {
   myLibrary.saveToLocalStorage();
 });
 
-// window.addEventListener("beforeunload", function () {
-//   let domContent = document.getElementById("main-content").innerHTML;
-//   localStorage.setItem("domContent", domContent);
-// });
+//so, when I load from LocalStorage the pushallitemstodom function breaks. 
 
-// function test() {
-//   let domContent = localStorage.getItem("domContent");
-//   document.getElementById("main-content").innerHTML = domContent;
+//its not a problem with the storage its a problem with the checkbox existing/functionality....
 
-//   if (domContent == "" || domContent == undefined || domContent == null) {
-//     domContent = document.getElementById("main-content").innerHTML =
-//     '<div data-id="93bb33ce-7a58-4523-b660-cc0de999f8f7" class="card all 93bb33ce-7a58-4523-b660-cc0de999f8f7" style="z-index: 1; position: relative;"><div class="title" contenteditable="true">Test Note</div><input class="date" type="date"><div class="description" style="display: none;" contenteditable="true">This is a developer\'s note. </div><div class="buttonbox"><button class="button rmv" style="">X</button></div></div>';
-// }
-
-//   // let domContent = document.getElementById("main-content").innerHTML;
-//   console.log(`DOMCONTENT VALUE: ${domContent}`);
-// }
-
-// //    const data = localStorage.getItem("myLibrary");
-// //   console.log(data);
+//specifically that the createElements function trips up on the checkbox for some reason...

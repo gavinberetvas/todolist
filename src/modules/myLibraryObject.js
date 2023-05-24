@@ -6,46 +6,52 @@ export let myLibrary = {
   all: [],
   today: [
     {
-      title: "1title.value",
+      title: "Today",
       date: "2023-05-21",
       description: "description.value",
       id: "today",
+      filter: ["today"],
     },
     {
-      title: "2title.value",
+      title: "Today",
       date: "2024-07-18",
       description: "description.value",
       id: "today",
+      filter: ["today"],
     },
   ],
 
   tomorrow: [
     {
-      title: "3title.value",
+      title: "completed tomorrow",
       date: "2224-05-18",
       description: "description.value",
       id: "tomorrow",
+      filter: ["completed", "tomorrow"],
     },
     {
-      title: "4title.value",
+      title: "tomorrow",
       date: "1924-10-18",
       description: "description.value",
-      id: "tomorrow",
+      id: "tomorrow2",
+      filter: ["tomorrow"],
     },
   ],
 
   nextday: [
     {
-      title: "5title.value",
+      title: "important completed",
       date: "1000-07-18",
       description: "description.value",
       id: "tomorrwkewe",
+      filter: ["important", "completed"],
     },
     {
-      title: "6title.value",
+      title: "tomorrow completed",
       date: "2024-01-01",
       description: "description.value",
       id: "fddf5b8a-95e6-4fba-b703-dbd8f2edb8b6",
+      filter: ["tomorrow", "completed"],
     },
   ],
 
@@ -60,6 +66,7 @@ export let myLibrary = {
       date: date.value,
       description: description.value,
       id: uuid,
+      filter: []
     });
     console.log(this);
     modal.classList.remove("active");
@@ -127,8 +134,7 @@ export function loadFromLocalStorage() {
   if (data) {
     const savedLibrary = JSON.parse(data);
     console.log(savedLibrary);
-    //     Object.assign(myLibrary, savedLibrary);
-    //   }
+
     // //initialization of object methods:
     myLibrary.newNote = function (event, index) {
       event.preventDefault();
@@ -140,6 +146,7 @@ export function loadFromLocalStorage() {
         date: date.value,
         description: description.value,
         id: uuid,
+        filter: []
       });
       console.log(this);
       modal.classList.remove("active");

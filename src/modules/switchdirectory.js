@@ -1,4 +1,8 @@
+import { myLibrary } from "./myLibraryObject";
+
 export let index = "all";
+
+//TODO: TODAY AND TOMORROW DIRECTORIES NEED TO FILTER BY DATE NOT BY STRING
 
 function switchdirectory() {
   document.getElementById("today").addEventListener("click", function () {
@@ -15,12 +19,28 @@ function switchdirectory() {
     console.log(index);
   });
 
+  document.getElementById("important").addEventListener("click", function () {
+    index = "important";
+    hideItems();
+    makeCurrentDirectory();
+    console.log(index);
+  });
+
+  document.getElementById("completed").addEventListener("click", function () {
+    index = "completed";
+    hideItems();
+    makeCurrentDirectory();
+    console.log(index);
+  });
+
   document.getElementById("all").addEventListener("click", function () {
     index = "all";
     showAll();
     makeCurrentDirectory();
     console.log(index);
   });
+
+  
 }
 
  export function hideItems() {
@@ -34,6 +54,27 @@ function switchdirectory() {
       element.style.display = "none";
     }
   }
+}
+
+export function newFilterItems() {
+  const elements = myLibrary.getAllObjects();
+  elements.forEach((item) => {
+    if(item.filter.contains(filter)) {
+      item.style.display = "";
+    } else {
+      element.style.display = "none";
+    }
+  });
+
+  // for (let i = 0; i < elements.length; i++) {
+  //   const element = elements[i];
+
+  //   if (element.classList.contains(index)) {
+  //     element.style.display = "";
+  //   } else {
+  //     element.style.display = "none";
+  //   }
+  // }
 }
 
 export function makeCurrentDirectory() {

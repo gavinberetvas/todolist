@@ -12,25 +12,21 @@ function pushtoDom() {
   let notedate = lastObj.date;
   let notedescription = lastObj.description;
   let noteID = lastObj.id;
+  let noteFilter = lastObj.filter;
 
-  const newNote = createElements(notetitle, notedate, notedescription, noteID);
+  const newNote = createElements(
+    notetitle,
+    notedate,
+    notedescription,
+    noteID,
+    noteFilter
+  );
   document.getElementById("main-content").appendChild(newNote);
 }
 
 export function pushAllItemstoDom() {
- ///newcode////
-
-  // let storedObject = localStorage.getItem("myLibrary");
-
-  // if (storedObject === null || storedObject === undefined) {
-  //   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-  //   storedObject = JSON.stringify(myLibrary);
-  // } else {
-  //   myLibrary = JSON.parse(storedObject);
-  // }
-  // /////newcode//////
-
   let init = myLibrary.getAllObjects();
+  console.log(myLibrary.getAllObjects());
 
   init.forEach((item) => {
     console.log(item);
@@ -38,30 +34,47 @@ export function pushAllItemstoDom() {
     let notedate = item.date;
     let notedescription = item.description;
     let noteID = item.id;
+    let noteFilter = item.filter;
 
     const newNote = createElements(
       notetitle,
       notedate,
       notedescription,
-      noteID
+      noteID,
+      noteFilter
     );
 
     document.getElementById("main-content").appendChild(newNote);
   });
 }
 
-function createElements(notetitle, notedate, notedescription, noteID) {
+function createElements(
+  notetitle,
+  notedate,
+  notedescription,
+  noteID,
+  noteFilter
+) {
+  console.log(noteFilter);
+
   const note = document.createElement("div");
 
   note.setAttribute("data-id", `${noteID}`);
   note.classList.add("card");
 
+  //this is becoming redundant...
   note.classList.add(index);
+
+  //ok. This works.
+  console.log(noteFilter);
+
+  noteFilter.forEach((filter) => {
+    note.classList.add(filter);
+  });
+
   console.log(`INDEX: ${index}`);
   console.log(`NOTEID: ${noteID}`);
 
-  //Testing the following line of code to see if solves the lack of sorting items properly on init
-  //it does...but im not entirely sure how.
   note.classList.add(noteID);
 
   const title = document.createElement("div");
@@ -120,10 +133,24 @@ function createElements(notetitle, notedate, notedescription, noteID) {
     });
   });
 
+  //TODO: CREATE TWO BUTTONS. ONE TO MARK SOMETHING AS IMPORTANT. ONE TO MARK AS COMPLETE
+
+  //TODO: figure out why this breaks the code: 
+
+  // let checkbox = document.createElement("input");
+  // checkbox.type = "checkbox";
+  // checkbox.classList.add("circular-checkbox");
+
+// these three lines above break the local storage for some reason?
+
   const buttonBox = document.createElement("div");
   let removeBtn = deleteButton();
   removeBtn.style.display = "none";
   buttonBox.classList.add("buttonbox");
+
+  //this as well...
+  // note.appendChild(checkbox);
+
   note.appendChild(title);
   note.appendChild(date);
   note.appendChild(description);
@@ -150,5 +177,72 @@ function deleteButton() {
 
   return removeBtn;
 }
+
+//this is what is supposed to be the checkbox, which works when local storage is disabled, but not when local storage is enabled...
+// function completedButton() {
+//   const checkbox = document.createElement("input");
+//   checkbox.type = "checkbox";
+//   checkbox.classList.add("circular-checkbox");
+
+//   // const card = checkbox.closest(".card");
+
+//   // for (let key in myLibrary) {
+//   //   if (Array.isArray(myLibrary[key])) {
+//   //     const index = myLibrary[key].findIndex((item) => item.id == noteID);
+//   //     if (index !== -1 && myLibrary[key][index].filter.includes("completed")) {
+//   //      checkbox.checked = true
+
+      
+//   //       console.log(myLibrary[key][index].filter);
+//   //       break;
+//   //     }
+//   //   }
+//   // }
+
+//   // checkbox.addEventListener("change", function () {
+//   //   if (this.checked) {
+//   //     console.log("CHECKED");
+//   //     for (let key in myLibrary) {
+//   //       if (Array.isArray(myLibrary[key])) {
+//   //         const index = myLibrary[key].findIndex((item) => item.id == noteID);
+//   //         if (index !== -1) {
+//   //           myLibrary[key][index].filter.push("completed");
+
+//   //           const card = this.closest(".card");
+//   //           if (card && !card.classList.contains("completed")) {
+//   //             card.classList.add("completed");
+//   //           }
+
+//   //           console.log(myLibrary[key][index].filter);
+//   //           break;
+//   //         }
+//   //       }
+//   //     }
+//   //   } else {
+//   //     for (let key in myLibrary) {
+//   //       if (Array.isArray(myLibrary[key])) {
+//   //         const index = myLibrary[key].findIndex((item) => item.id == noteID);
+//   //         if (index !== -1) {
+//   //           const filterIndex =
+//   //             myLibrary[key][index].filter.indexOf("completed");
+//   //           if (filterIndex !== -1) {
+//   //             myLibrary[key][index].filter.splice(filterIndex, 1);
+
+//   //             const card = this.closest(".card");
+//   //             if (card && card.classList.contains("completed")) {
+//   //               card.classList.remove("completed");
+//   //             }
+
+//   //             console.log(myLibrary[key][index].filter);
+//   //           }
+//   //           break;
+//   //         }
+//   //       }
+//   //     }
+//   //   }
+//   // });
+
+//   return checkbox;
+// }
 
 export default pushtoDom;
