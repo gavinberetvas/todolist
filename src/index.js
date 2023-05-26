@@ -6,6 +6,7 @@ import { myLibrary } from "./modules/myLibraryObject";
 import { pushAllItemstoDom } from "./modules/domManipulation";
 import { newProjectButton } from "./modules/newProjectButton";
 import { loadFromLocalStorage } from "./modules/myLibraryObject";
+import { sortByDate } from "./modules/switchdirectory";
 
 modal();
 switchdirectory();
@@ -13,6 +14,7 @@ newProjectButton();
 
 loadFromLocalStorage();
 pushAllItemstoDom();
+// sortByDate();
 
 window.addEventListener("beforeunload", function () {
   myLibrary.saveToLocalStorage();

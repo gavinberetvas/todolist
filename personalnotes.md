@@ -28,3 +28,5 @@ e.g. projects {
 }
 
 https://mooniidev.github.io/todo-list/#
+
+https://stackoverflow.com/questions/19910161/javascript-calculating-date-from-today-date-to-7-days-before

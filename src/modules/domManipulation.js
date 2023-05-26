@@ -93,6 +93,7 @@ function createElements(
   date.classList.add("date");
   date.type = "date";
   date.value = `${notedate}`;
+  date.setAttribute('data-date', `${notedate}`);
 
   const description = document.createElement("div");
   description.classList.add("description");
@@ -130,7 +131,8 @@ function createElements(
 
     overlay.addEventListener("click", function () {
       myLibrary.editNote(note, notetitle, notedate, notedescription, noteID, noteFilter);
-
+      
+      date.setAttribute('data-date', `${notedate}`);
       overlay.classList.remove("active");
       note.style.zIndex = 1;
       note.style.position = "relative";
