@@ -7,34 +7,34 @@ export let myLibrary = {
   today: [
     {
       title: "Today",
-      date: "2023-05-21",
+      date: "2023-05-26",
       description: "description.value",
       id: "today",
-      filter: ["today"],
+      complete: false,
     },
     {
       title: "Today",
-      date: "2024-07-18",
+      date: "2023-05-25",
       description: "description.value",
       id: "today",
-      filter: ["today"],
+      complete: false,
     },
   ],
 
   tomorrow: [
     {
       title: "completed tomorrow",
-      date: "2224-05-18",
+      date: "2023-05-27",
       description: "description.value",
       id: "tomorrow",
-      filter: ["completed", "tomorrow"],
+      complete: false,
     },
     {
       title: "tomorrow",
       date: "1924-10-18",
       description: "description.value",
       id: "tomorrow2",
-      filter: ["tomorrow"],
+      complete: true,
     },
   ],
 
@@ -44,14 +44,14 @@ export let myLibrary = {
       date: "1000-07-18",
       description: "description.value",
       id: "tomorrwkewe",
-      filter: ["important", "completed"],
+      complete: true,
     },
     {
       title: "tomorrow completed",
       date: "2024-01-01",
       description: "description.value",
       id: "fddf5b8a-95e6-4fba-b703-dbd8f2edb8b6",
-      filter: ["tomorrow", "completed"],
+      complete: true,
     },
   ],
 
@@ -66,6 +66,7 @@ export let myLibrary = {
       date: date.value,
       description: description.value,
       id: uuid,
+      complete: false,
       // filter: [],
     });
     console.log(this);
@@ -73,27 +74,21 @@ export let myLibrary = {
     overlay.classList.remove("active");
   },
 
-  editNote: function (
-    note,
-    notetitle,
-    notedate,
-    notedescription,
-    noteID,
-    // noteFilter
-  ) {
+  editNote: function (note, notetitle, notedate, notedescription) {
     let itemID = note.getAttribute("data-id");
+    // let completeID = note.getAttribute("data-complete");
+    // let completed = this[index].complete
 
     let editedObject = {
       title: `${notetitle}`,
       date: `${notedate}`,
       description: `${notedescription}`,
       id: itemID,
-      // filter: noteFilter,
     };
 
     for (let key in myLibrary) {
       if (Array.isArray(myLibrary[key])) {
-        const index = myLibrary[key].findIndex((item) => (item.id == itemID));
+        const index = myLibrary[key].findIndex((item) => item.id == itemID);
         if (index !== -1) {
           myLibrary[key][index] = editedObject;
           break;
@@ -147,7 +142,7 @@ export function loadFromLocalStorage() {
     // //initialization of object methods:
     myLibrary.newNote = function (event, index) {
       event.preventDefault();
-      const { title, date, description } = event.target.elements;
+      const { title, date, description, complete } = event.target.elements;
       const uuid = uuidv4();
 
       this[index].push({
@@ -156,13 +151,21 @@ export function loadFromLocalStorage() {
         description: description.value,
         id: uuid,
         filter: [],
+        complete: false,
       });
       console.log(this);
       modal.classList.remove("active");
       overlay.classList.remove("active");
     };
 
-    myLibrary.editNote = function (note, notetitle, notedate, notedescription, noteFilter) {
+    myLibrary.editNote = function (
+      note,
+      notetitle,
+      notedate,
+      notedescription,
+      noteFilter,
+      complete
+    ) {
       let itemID = note.getAttribute("data-id");
 
       let editedObject = {
@@ -175,7 +178,7 @@ export function loadFromLocalStorage() {
 
       for (let key in myLibrary) {
         if (Array.isArray(myLibrary[key])) {
-          const index = myLibrary[key].findIndex((item) => (item.id == itemID));
+          const index = myLibrary[key].findIndex((item) => item.id == itemID);
           if (index !== -1) {
             myLibrary[key][index] = editedObject;
             break;

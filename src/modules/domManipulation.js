@@ -31,12 +31,6 @@ export function pushAllItemstoDom() {
   init.forEach((item) => {
     console.log(item);
 
-    //this time! 
-    //this works with the initial items, but it breaks for additional items...
-    //instead lets do it with the dates.
-    // index = item.id;
-    // end this time
-
     let notetitle = item.title;
     let notedate = item.date;
     let notedescription = item.description;
@@ -68,17 +62,7 @@ function createElements(
 
   note.setAttribute("data-id", `${noteID}`);
   note.classList.add("card");
-
-  //this is what I want to change...
-  //maybe use data-keys?
   note.classList.add(index);
-
-  // //ok. This does not work.
-  // console.log(noteFilter);
-
-  // noteFilter.forEach((filter) => {
-  //   note.classList.add(filter);
-  // });
 
   console.log(`INDEX: ${index}`);
   console.log(`NOTEID: ${noteID}`);
@@ -131,7 +115,7 @@ function createElements(
 
     overlay.addEventListener("click", function () {
       myLibrary.editNote(note, notetitle, notedate, notedescription, noteID, noteFilter);
-      
+
       date.setAttribute('data-date', `${notedate}`);
       overlay.classList.remove("active");
       note.style.zIndex = 1;
@@ -145,20 +129,15 @@ function createElements(
 
   //TODO: CREATE TWO BUTTONS. ONE TO MARK SOMETHING AS IMPORTANT. ONE TO MARK AS COMPLETE
 
-  //TODO: figure out why this breaks the code: 
+  // let checkbox = completedButton(noteID, note);
 
-  // let checkbox = document.createElement("input");
-  // checkbox.type = "textarea";
-  // checkbox.classList.add("circular-checkbox");
-
-// these three lines above break the local storage for some reason?
 
   const buttonBox = document.createElement("div");
   let removeBtn = deleteButton();
   removeBtn.style.display = "none";
   buttonBox.classList.add("buttonbox");
 
-  //this as well...
+//TODO: FIX
   // note.appendChild(checkbox);
 
   note.appendChild(title);
@@ -188,71 +167,60 @@ function deleteButton() {
   return removeBtn;
 }
 
-//this is what is supposed to be the checkbox, which works when local storage is disabled, but not when local storage is enabled...
-// function completedButton() {
-//   const checkbox = document.createElement("input");
-//   checkbox.type = "checkbox";
-//   checkbox.classList.add("circular-checkbox");
+function completedButton(noteID) {
 
-//   // const card = checkbox.closest(".card");
+  // let note = this.closest(".card")
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.classList.add("circular-checkbox");
 
-//   // for (let key in myLibrary) {
-//   //   if (Array.isArray(myLibrary[key])) {
-//   //     const index = myLibrary[key].findIndex((item) => item.id == noteID);
-//   //     if (index !== -1 && myLibrary[key][index].filter.includes("completed")) {
-//   //      checkbox.checked = true
+  for (let key in myLibrary) {
+    if (Array.isArray(myLibrary[key])) {
+      const index = myLibrary[key].findIndex((item) => item.id == noteID);
+      if (index !== -1 && myLibrary[key][index].complete == true) {
+       checkbox.checked = true
 
       
-//   //       console.log(myLibrary[key][index].filter);
-//   //       break;
-//   //     }
-//   //   }
-//   // }
+        console.log(myLibrary[key][index]);
+        break;
+      }
+    }
+  }
 
-//   // checkbox.addEventListener("change", function () {
-//   //   if (this.checked) {
-//   //     console.log("CHECKED");
-//   //     for (let key in myLibrary) {
-//   //       if (Array.isArray(myLibrary[key])) {
-//   //         const index = myLibrary[key].findIndex((item) => item.id == noteID);
-//   //         if (index !== -1) {
-//   //           myLibrary[key][index].filter.push("completed");
+  checkbox.addEventListener("change", function (note) {
+    if (this.checked) {
+      console.log("CHECKED");
+      // let completeID = note.getAttribute("data-complete");
+      note.setAttribute('data-complete', true);
+      for (let key in myLibrary) {
+        if (Array.isArray(myLibrary[key])) {
+          const index = myLibrary[key].findIndex((item) => item.id == noteID);
+          if (index !== -1 && myLibrary[key][index].complete == false) {
+           checkbox.checked = true
+           myLibrary[key][index].complete = true
+            console.log(myLibrary[key][index]);
+            break;
+          }
+        }
+      }
+    } else {
 
-//   //           const card = this.closest(".card");
-//   //           if (card && !card.classList.contains("completed")) {
-//   //             card.classList.add("completed");
-//   //           }
+      note.setAttribute('data-complete', false);
+      for (let key in myLibrary) {
+        if (Array.isArray(myLibrary[key])) {
+          const index = myLibrary[key].findIndex((item) => item.id == noteID);
+          if (index !== -1 && myLibrary[key][index].complete == true) {
+           checkbox.checked = false
+           myLibrary[key][index].complete = false
+            console.log(myLibrary[key][index]);
+            break;
+          }
+        }
+      }
+    }
+  });
 
-//   //           console.log(myLibrary[key][index].filter);
-//   //           break;
-//   //         }
-//   //       }
-//   //     }
-//   //   } else {
-//   //     for (let key in myLibrary) {
-//   //       if (Array.isArray(myLibrary[key])) {
-//   //         const index = myLibrary[key].findIndex((item) => item.id == noteID);
-//   //         if (index !== -1) {
-//   //           const filterIndex =
-//   //             myLibrary[key][index].filter.indexOf("completed");
-//   //           if (filterIndex !== -1) {
-//   //             myLibrary[key][index].filter.splice(filterIndex, 1);
-
-//   //             const card = this.closest(".card");
-//   //             if (card && card.classList.contains("completed")) {
-//   //               card.classList.remove("completed");
-//   //             }
-
-//   //             console.log(myLibrary[key][index].filter);
-//   //           }
-//   //           break;
-//   //         }
-//   //       }
-//   //     }
-//   //   }
-//   // });
-
-//   return checkbox;
-// }
+  return checkbox;
+}
 
 export default pushtoDom;

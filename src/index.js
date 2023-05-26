@@ -14,14 +14,8 @@ newProjectButton();
 
 loadFromLocalStorage();
 pushAllItemstoDom();
-// sortByDate();
 
-window.addEventListener("beforeunload", function () {
-  myLibrary.saveToLocalStorage();
-});
 
-//so, when I load from LocalStorage the pushallitemstodom function breaks. 
-
-//its not a problem with the storage its a problem with the checkbox existing/functionality....
-
-//specifically that the createElements function trips up on the checkbox for some reason...
+// window.addEventListener("beforeunload", function () {
+//   myLibrary.saveToLocalStorage();
+// });
