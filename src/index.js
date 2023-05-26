@@ -16,6 +16,9 @@ loadFromLocalStorage();
 pushAllItemstoDom();
 
 
-// window.addEventListener("beforeunload", function () {
-//   myLibrary.saveToLocalStorage();
-// });
+window.addEventListener("beforeunload", function () {
+  myLibrary.saveToLocalStorage();
+});
+
+
+//test
