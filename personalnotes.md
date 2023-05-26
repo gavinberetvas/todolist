@@ -8,58 +8,25 @@ npm install --save-dev style-loader css-loader
 //getting started with eslint
 eslint --init
 
-on reflection realizing the entire project would probably be made easier using object methods.
 
-so far I have 6 things I want to do that interact with the library in some way.
-Adding, editing, and deleting notes.
-adding, editing and deleting projects.
 
-Verysimply: 
+Local storage breaks the object methods so I need to add them on initialization?
 
-the objects need to have 
+TODO: local storage and 
+      hardcoded filters: e.g. today, this week, important, completed.
+      priority 
+      completed button
+      project object
 
-title
-dueDate
-Priority
-description
-(tags?)
-UUID
-test
-testing 12
+      
 
-.makeNewNote
-  needs to make a new object within the array corresponding to a key. 
+e.g. projects {
+  ID: 1234567890-98765432
+  title: New_Project_1,
 
-  e.g
+  and so on...
+}
 
-  addObjectToKey: function(keyName, newObject) {
-    if (Array.isArray(this[keyName])) {
-      this[keyName].push(newObject);
-    } else {
-      console.log(`"${keyName}" is not an array.`);
-    }
-  }
-  
-.editNote
-  needs to be able to edit the values within the nested objects
-.deleteNote
-  needs to be able to delete a specific note within the arrays. 
+https://mooniidev.github.io/todo-list/#
 
-.makeNewProject
-  should make a new key with a value of arrays.
-.editProject
-  should be able to edit the title of the key.
-.deleteProject
-  should delete a key value pair from the object
-
-.changeindex? or pass (index) as an argument on click like get data-value from button...
-
-  and it would also be good if the DOM was made more streamlined as well/
-
-  //with destucturing
-const {name, email, phone} = employee;
-
-//without destucturing
-const name = employee.name;
-const email = employee.email;
-const phone = employee.phone;
+https://stackoverflow.com/questions/19910161/javascript-calculating-date-from-today-date-to-7-days-before

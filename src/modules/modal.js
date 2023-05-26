@@ -1,7 +1,8 @@
-import modalPopulate from "./modalPopulate";
+// import modalPopulate from "./modalPopulate";
 import pushtoDom from "./domManipulation";
 import { index } from "./switchdirectory";
-import { init } from "..";
+import { myLibrary } from "./myLibraryObject";
+// import { init } from "..";
 
 function modal() {
 const openModalButtons = document.querySelectorAll("[data-modal-target]");
@@ -43,12 +44,12 @@ function closeModal(modal) {
 }
 
 form.addEventListener("submit", (event) => {
-    modalPopulate();
+    event.preventDefault();
+    myLibrary.newNote(event, index);
     pushtoDom();
+
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
   });
 }
 
-
 export default modal;
-
-//thanks to webdevsimplified for the modal tutorial. 
