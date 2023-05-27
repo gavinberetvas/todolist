@@ -56,80 +56,80 @@ export let myLibrary = {
   ],
 
   //works!
-  newNote: function (event, index) {
-    event.preventDefault();
-    const { title, date, description } = event.target.elements;
-    const uuid = uuidv4();
+  // newNote: function (event, index) {
+  //   event.preventDefault();
+  //   const { title, date, description } = event.target.elements;
+  //   const uuid = uuidv4();
 
-    this[index].push({
-      title: title.value,
-      date: date.value,
-      description: description.value,
-      id: uuid,
-      complete: false,
-      // filter: [],
-    });
-    console.log(this);
-    modal.classList.remove("active");
-    overlay.classList.remove("active");
-  },
+  //   this[index].push({
+  //     title: title.value,
+  //     date: date.value,
+  //     description: description.value,
+  //     id: uuid,
+  //     complete: false,
+  //     // filter: [],
+  //   });
+  //   console.log(this);
+  //   modal.classList.remove("active");
+  //   overlay.classList.remove("active");
+  // },
 
-  editNote: function (note, notetitle, notedate, notedescription) {
-    let itemID = note.getAttribute("data-id");
-    // let completeID = note.getAttribute("data-complete");
-    // let completed = this[index].complete
+  // editNote: function (note, notetitle, notedate, notedescription) {
+  //   let itemID = note.getAttribute("data-id");
+  //   // let completeID = note.getAttribute("data-complete");
+  //   // let completed = this[index].complete
 
-    let editedObject = {
-      title: `${notetitle}`,
-      date: `${notedate}`,
-      description: `${notedescription}`,
-      id: itemID,
-    };
+  //   let editedObject = {
+  //     title: `${notetitle}`,
+  //     date: `${notedate}`,
+  //     description: `${notedescription}`,
+  //     id: itemID,
+  //   };
 
-    for (let key in myLibrary) {
-      if (Array.isArray(myLibrary[key])) {
-        const index = myLibrary[key].findIndex((item) => item.id == itemID);
-        if (index !== -1) {
-          myLibrary[key][index] = editedObject;
-          break;
-        }
-      }
-    }
-  },
+  //   for (let key in myLibrary) {
+  //     if (Array.isArray(myLibrary[key])) {
+  //       const index = myLibrary[key].findIndex((item) => item.id == itemID);
+  //       if (index !== -1) {
+  //         myLibrary[key][index] = editedObject;
+  //         break;
+  //       }
+  //     }
+  //   }
+  // },
 
-  deleteNote: function (removeBtn) {
-    let idValue = removeBtn.closest("[data-id]").getAttribute("data-id");
-    for (let key in myLibrary) {
-      if (Array.isArray(myLibrary[key])) {
-        const index = myLibrary[key].findIndex((item) => item.id == idValue);
-        if (index !== -1) {
-          myLibrary[key].splice(index, 1);
-          return;
-        }
-      }
-    }
-  },
+  // deleteNote: function (removeBtn) {
+  //   let idValue = removeBtn.closest("[data-id]").getAttribute("data-id");
+  //   for (let key in myLibrary) {
+  //     if (Array.isArray(myLibrary[key])) {
+  //       const index = myLibrary[key].findIndex((item) => item.id == idValue);
+  //       if (index !== -1) {
+  //         myLibrary[key].splice(index, 1);
+  //         return;
+  //       }
+  //     }
+  //   }
+  // },
 
-  newProject: function (uuid) {
-    myLibrary[uuid] = [];
-  },
+  // newProject: function (uuid) {
+  //   myLibrary[uuid] = [];
+  // },
 
-  getAllObjects: function () {
-    const objects = [];
+  // getAllObjects: function () {
+  //   const objects = [];
 
-    for (let key in this) {
-      if (this.hasOwnProperty(key) && Array.isArray(this[key])) {
-        objects.push(...this[key]);
-      }
-    }
+  //   for (let key in this) {
+  //     if (this.hasOwnProperty(key) && Array.isArray(this[key])) {
+  //       objects.push(...this[key]);
+  //     }
+  //   }
 
-    console.log(objects);
-    return objects;
-  },
+  //   console.log(objects);
+  //   return objects;
+  // },
 
-  saveToLocalStorage: function () {
-    localStorage.setItem("myLibrary", JSON.stringify(this));
-  },
+  // saveToLocalStorage: function () {
+  //   localStorage.setItem("myLibrary", JSON.stringify(this));
+  // },
 };
 
 export function loadFromLocalStorage() {
@@ -152,6 +152,7 @@ export function loadFromLocalStorage() {
         id: uuid,
         filter: [],
         complete: false,
+        important: false,
       });
       console.log(this);
       modal.classList.remove("active");
@@ -164,9 +165,28 @@ export function loadFromLocalStorage() {
       notedate,
       notedescription,
       noteFilter,
-      complete
-    ) {
+    ) 
+    {
       let itemID = note.getAttribute("data-id");
+      let itemComplete = note.getAttribute("data-complete");
+      let itemImportant = note.getAttribute("data-important");
+
+      console.log(`WOW: ${itemComplete}`)
+      console.log(`WOWWWEE: ${itemImportant}`)
+
+      if (itemComplete === "true") {
+        itemComplete = true;
+      } else if (itemComplete === "false") {
+        itemComplete = false;
+      }
+
+      if (itemImportant === "true") {
+        itemImportant = true;
+      } else if (itemImportant === "false") {
+        itemImportant = false;
+      }
+    
+    
 
       let editedObject = {
         title: `${notetitle}`,
@@ -174,6 +194,8 @@ export function loadFromLocalStorage() {
         description: `${notedescription}`,
         id: itemID,
         filter: noteFilter,
+        complete: itemComplete,
+        important: itemImportant,
       };
 
       for (let key in myLibrary) {

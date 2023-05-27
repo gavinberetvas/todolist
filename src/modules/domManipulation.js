@@ -127,9 +127,10 @@ function createElements(
     });
   });
 
-  //TODO: CREATE TWO BUTTONS. ONE TO MARK SOMETHING AS IMPORTANT. ONE TO MARK AS COMPLETE
-
-  // let checkbox = completedButton(noteID, note);
+  note.setAttribute('data-complete', false);
+  note.setAttribute('data-important', false);
+  let checkbox = completedButton(noteID, note);
+  let impButton = importantButton(noteID, note)
 
 
   const buttonBox = document.createElement("div");
@@ -137,12 +138,11 @@ function createElements(
   removeBtn.style.display = "none";
   buttonBox.classList.add("buttonbox");
 
-//TODO: FIX
-  // note.appendChild(checkbox);
-
+  note.appendChild(checkbox);
   note.appendChild(title);
   note.appendChild(date);
   note.appendChild(description);
+  note.appendChild(impButton);
   buttonBox.appendChild(removeBtn);
   note.appendChild(buttonBox);
 
@@ -167,7 +167,7 @@ function deleteButton() {
   return removeBtn;
 }
 
-function completedButton(noteID) {
+function completedButton(noteID, note) {
 
   // let note = this.closest(".card")
   const checkbox = document.createElement("input");
@@ -179,7 +179,6 @@ function completedButton(noteID) {
       const index = myLibrary[key].findIndex((item) => item.id == noteID);
       if (index !== -1 && myLibrary[key][index].complete == true) {
        checkbox.checked = true
-
       
         console.log(myLibrary[key][index]);
         break;
@@ -187,11 +186,23 @@ function completedButton(noteID) {
     }
   }
 
-  checkbox.addEventListener("change", function (note) {
+  if (checkbox.checked == true) {
+    note.setAttribute('data-complete', true);
+  }
+
+  checkbox.addEventListener("change", function () {
+    if (this.checked) {
+      // note.classList.add("completed");
+      note.setAttribute('data-complete', true);
+    } else {
+      // note.classList.remove("completed");
+      note.setAttribute('data-complete', false);
+    }
+  });
+
+  checkbox.addEventListener("change", function () {
     if (this.checked) {
       console.log("CHECKED");
-      // let completeID = note.getAttribute("data-complete");
-      note.setAttribute('data-complete', true);
       for (let key in myLibrary) {
         if (Array.isArray(myLibrary[key])) {
           const index = myLibrary[key].findIndex((item) => item.id == noteID);
@@ -205,13 +216,80 @@ function completedButton(noteID) {
       }
     } else {
 
-      note.setAttribute('data-complete', false);
+      // note.setAttribute('data-complete', false);
       for (let key in myLibrary) {
         if (Array.isArray(myLibrary[key])) {
           const index = myLibrary[key].findIndex((item) => item.id == noteID);
           if (index !== -1 && myLibrary[key][index].complete == true) {
            checkbox.checked = false
            myLibrary[key][index].complete = false
+            console.log(myLibrary[key][index]);
+            break;
+          }
+        }
+      }
+    }
+  });
+
+  return checkbox;
+}
+
+function importantButton(noteID, note) {
+
+  // let note = this.closest(".card")
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.classList.add("important-checkbox");
+
+  for (let key in myLibrary) {
+    if (Array.isArray(myLibrary[key])) {
+      const index = myLibrary[key].findIndex((item) => item.id == noteID);
+      if (index !== -1 && myLibrary[key][index].important == true) {
+       checkbox.checked = true
+       //THIS LINE ISNT WORKING:  note.setAttribute('data-important', true)
+      
+        console.log(myLibrary[key][index]);
+        break;
+      }
+    }
+  }
+
+  if (checkbox.checked == true) {
+    note.setAttribute('data-important', true);
+  }
+
+
+  checkbox.addEventListener("change", function () {
+    if (this.checked) {
+      // note.classList.add("important");
+      note.setAttribute('data-important', true);
+    } else {
+      // note.classList.remove("important");
+      note.setAttribute('data-important', false);
+    }
+  });
+
+  checkbox.addEventListener("change", function () {
+    if (this.checked) {
+      console.log("CHECKED");
+      for (let key in myLibrary) {
+        if (Array.isArray(myLibrary[key])) {
+          const index = myLibrary[key].findIndex((item) => item.id == noteID);
+          if (index !== -1 && myLibrary[key][index].important == false) {
+           checkbox.checked = true
+           myLibrary[key][index].important = true
+            console.log(myLibrary[key][index]);
+            break;
+          }
+        }
+      }
+    } else {
+      for (let key in myLibrary) {
+        if (Array.isArray(myLibrary[key])) {
+          const index = myLibrary[key].findIndex((item) => item.id == noteID);
+          if (index !== -1 && myLibrary[key][index].important == true) {
+           checkbox.checked = false
+           myLibrary[key][index].important = false
             console.log(myLibrary[key][index]);
             break;
           }

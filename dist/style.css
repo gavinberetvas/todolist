@@ -137,6 +137,9 @@ max-width: 15rem;
     
   }
 
+
+  
+
   @media screen and (max-width: 600px) {
     .contentwrapper {
       display: flex;
