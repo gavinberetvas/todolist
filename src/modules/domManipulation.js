@@ -246,8 +246,6 @@ function importantButton(noteID, note) {
       const index = myLibrary[key].findIndex((item) => item.id == noteID);
       if (index !== -1 && myLibrary[key][index].important == true) {
        checkbox.checked = true
-       //THIS LINE ISNT WORKING:  note.setAttribute('data-important', true)
-      
         console.log(myLibrary[key][index]);
         break;
       }

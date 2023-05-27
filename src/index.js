@@ -7,18 +7,22 @@ import { pushAllItemstoDom } from "./modules/domManipulation";
 import { newProjectButton } from "./modules/newProjectButton";
 import { loadFromLocalStorage } from "./modules/myLibraryObject";
 import { sortByDate } from "./modules/switchdirectory";
+import { loadProjectsFromLS } from "./modules/newProjectButton";
+
 
 modal();
 switchdirectory();
+
+loadProjectsFromLS();
 newProjectButton();
 
 loadFromLocalStorage();
 pushAllItemstoDom();
 
+//newcode!
+//
 
 window.addEventListener("beforeunload", function () {
   myLibrary.saveToLocalStorage();
 });
 
-
-//test
