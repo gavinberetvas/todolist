@@ -30,3 +30,7 @@ e.g. projects {
 https://mooniidev.github.io/todo-list/#
 
 https://stackoverflow.com/questions/19910161/javascript-calculating-date-from-today-date-to-7-days-before
+
+///For some reason the new notes made in the projcet folders dont get the correct UUID value. I need to fix that, and then Im basically done. 
+
+//except important and completed still need to iterate through the library and sort by important: true and completed: true, but thats pretty straightforward. 
