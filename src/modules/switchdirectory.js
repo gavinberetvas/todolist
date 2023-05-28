@@ -24,14 +24,16 @@ function switchdirectory() {
 
   document.getElementById("important").addEventListener("click", function () {
     index = "important";
-    hideItems();
+    // hideItems();
+    sortByImportant();
     makeCurrentDirectory();
     console.log(index);
   });
 
   document.getElementById("completed").addEventListener("click", function () {
     index = "completed";
-    hideItems();
+    // hideItems();
+    sortByComplete()
     makeCurrentDirectory();
     console.log(index);
   });
@@ -107,6 +109,54 @@ export function sortByWeek() {
       closestCard.style.display = "none";
     }
   });
+}
+
+function sortByComplete() {
+    const cards = document.getElementsByClassName('card');
+  
+    console.log(`cards fool: ${cards}`)
+  
+    for (let i = 0; i < cards.length; i++) {
+      const card = cards[i];
+      let projectAttribute = card.getAttribute('data-complete');
+
+      if (projectAttribute === "true") {
+        projectAttribute = true;
+      } else if (projectAttribute === "false") {
+        projectAttribute = false;
+      }
+      console.log(`project attribute fool: ${projectAttribute}`)
+  
+      if (projectAttribute == true) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    }
+}
+
+function sortByImportant() {
+  const cards = document.getElementsByClassName('card');
+
+  console.log(`cards fool: ${cards}`)
+
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    let projectAttribute = card.getAttribute('data-important');
+
+    if (projectAttribute === "true") {
+      projectAttribute = true;
+    } else if (projectAttribute === "false") {
+      projectAttribute = false;
+    }
+    console.log(`project attribute fool: ${projectAttribute}`)
+
+    if (projectAttribute == true) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  }
 }
 
 export function makeCurrentDirectory() {

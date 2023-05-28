@@ -19,9 +19,6 @@ newProjectButton();
 loadFromLocalStorage();
 pushAllItemstoDom();
 
-//newcode!
-//
-
 window.addEventListener("beforeunload", function () {
   myLibrary.saveToLocalStorage();
 });

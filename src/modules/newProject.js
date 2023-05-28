@@ -44,7 +44,13 @@ export function newProjectButton() {
       index = uuid;
       console.log(newProjectName.innerHTML);
       console.log(`INDEX: ${index}`);
+
       makeCurrentDirectory();
+
+      //replace this with a new function that hides all items that do
+      //not have the correct project filter.
+      //if data-project = item.key, then display:
+      //else do not display.
       hideItems();
 
       newProjectName.contentEditable = true;
@@ -126,6 +132,7 @@ export function loadProjectsFromLS() {
       newProject.classList.add("directory");
       ///breaks here
       newProject.dataset.project = `${item.key}`;
+
       newProject.classList.add("projectcard");
   
       let newProjectName = document.createElement("p");
@@ -143,8 +150,10 @@ export function loadProjectsFromLS() {
         index = item.key;
         console.log(newProjectName.innerHTML);
         console.log(`INDEX: ${index}`);
+
         makeCurrentDirectory();
-        hideItems();
+        filterByProject(testing);
+        // hideItems();
   
         newProjectName.contentEditable = true;
         newProjectName.classList.add("activeproject");
@@ -192,15 +201,20 @@ export function loadProjectsFromLS() {
 
           //other stuff to implement
   
-          delete myLibrary[item.key];
+          delete myLibrary[testing];
+
           deleteButton.closest(".projectcard").remove();
   
           //right?? this will need to be tested further....its pushing an error right now
           //UUID is not defined
-          deleteButton.dataset.delete = `${item.key}`;
-          const elements = Array.from(
-            document.getElementsByClassName(deleteAttributeValue)
-          );
+
+          // deleteButton.dataset.delete = `${item.key}`;
+
+          // const elements = Array.from(
+          //   document.getElementsByClassName(deleteAttributeValue)
+          // );
+
+          const elements = document.querySelectorAll(`[data-project="${deleteAttributeValue}"]`);
           elements.forEach((element) => {
             element.remove();
           });
@@ -224,8 +238,28 @@ export function loadProjectsFromLS() {
   return projectDir;
 }
 
-// export function pushAllProjectsToDom() {
-//   data.forEach((item) => {
-//     console.log(item);
-//   });
-// }
+function filterByProject(testing) {
+  const cards = document.getElementsByClassName('card');
+
+  console.log(`cards fool: ${cards}`)
+  console.log(`testing/project ID fool: ${testing}`)
+
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    const projectAttribute = card.getAttribute('data-project');
+
+    console.log(`project attribute fool: ${projectAttribute}`)
+
+    if (projectAttribute == testing) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  }
+}
+
+//update project function
+//TODO: when deleting projects delete all items that have a corresponding projectFilter. 
+//TODO: when deleting projects, delete the same project KEY from the library. 
+
+//make important and completed buttons. 

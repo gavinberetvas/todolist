@@ -12,7 +12,7 @@ function pushtoDom() {
   let notedate = lastObj.date;
   let notedescription = lastObj.description;
   let noteID = lastObj.id;
-  let noteFilter = lastObj.filter;
+  let noteFilter = lastObj.projectFilter;
 
   const newNote = createElements(
     notetitle,
@@ -35,7 +35,7 @@ export function pushAllItemstoDom() {
     let notedate = item.date;
     let notedescription = item.description;
     let noteID = item.id;
-    let noteFilter = item.filter;
+    let noteFilter = item.projectFilter;
 
     const newNote = createElements(
       notetitle,
@@ -61,6 +61,8 @@ function createElements(
   const note = document.createElement("div");
 
   note.setAttribute("data-id", `${noteID}`);
+  note.setAttribute("data-project", `${noteFilter}`);
+  
   note.classList.add("card");
   note.classList.add(index);
 
