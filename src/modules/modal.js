@@ -1,8 +1,6 @@
-// import modalPopulate from "./modalPopulate";
 import pushtoDom from "./domManipulation";
 import { index } from "./switchdirectory";
 import { myLibrary } from "./myLibraryObject";
-// import { init } from "..";
 
 function modal() {
 const openModalButtons = document.querySelectorAll("[data-modal-target]");

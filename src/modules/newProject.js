@@ -109,8 +109,6 @@ export function newProjectButton() {
   });
 }
 
-//TODO: 
-//WIP
 export function loadProjectsFromLS() {
   const data = localStorage.getItem("projectDirectory");
   console.log(`Wowwwwww: ${data}`);
@@ -130,14 +128,11 @@ export function loadProjectsFromLS() {
 
       let newProject = document.createElement("div");
       newProject.classList.add("directory");
-      ///breaks here
       newProject.dataset.project = `${item.key}`;
-
       newProject.classList.add("projectcard");
   
       let newProjectName = document.createElement("p");
       newProjectName.contentEditable = true;
-      ///
       newProjectName.innerHTML = item.title;
   
       let deleteButton = document.createElement("button");
@@ -153,7 +148,6 @@ export function loadProjectsFromLS() {
 
         makeCurrentDirectory();
         filterByProject(testing);
-        // hideItems();
   
         newProjectName.contentEditable = true;
         newProjectName.classList.add("activeproject");
@@ -257,9 +251,3 @@ function filterByProject(testing) {
     }
   }
 }
-
-//update project function
-//TODO: when deleting projects delete all items that have a corresponding projectFilter. 
-//TODO: when deleting projects, delete the same project KEY from the library. 
-
-//make important and completed buttons. 

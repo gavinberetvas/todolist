@@ -1,5 +1,3 @@
-// import { keys } from "lodash";
-// import { index } from "./switchdirectory";
 import { v4 as uuidv4 } from "uuid";
 
 export let myLibrary = {
@@ -75,9 +73,6 @@ export let myLibrary = {
 
   editNote: function (note, notetitle, notedate, notedescription) {
     let itemID = note.getAttribute("data-id");
-    // let completeID = note.getAttribute("data-complete");
-    // let completed = this[index].complete
-
     let editedObject = {
       title: `${notetitle}`,
       date: `${notedate}`,

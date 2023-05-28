@@ -1,9 +1,6 @@
 import { myLibrary } from "./myLibraryObject";
 
-///TODO: this needs to be different.
 export let index = "all";
-
-//TODO: TODAY AND TOMORROW DIRECTORIES NEED TO FILTER BY DATE NOT BY STRING
 
 function switchdirectory() {
   document.getElementById("today").addEventListener("click", function () {
@@ -16,7 +13,6 @@ function switchdirectory() {
 
   document.getElementById("week").addEventListener("click", function () {
     index = "tomorrow";
-    // hideItems();
     sortByWeek();
     makeCurrentDirectory();
     console.log(index);
@@ -24,7 +20,6 @@ function switchdirectory() {
 
   document.getElementById("important").addEventListener("click", function () {
     index = "important";
-    // hideItems();
     sortByImportant();
     makeCurrentDirectory();
     console.log(index);
@@ -32,7 +27,6 @@ function switchdirectory() {
 
   document.getElementById("completed").addEventListener("click", function () {
     index = "completed";
-    // hideItems();
     sortByComplete()
     makeCurrentDirectory();
     console.log(index);

@@ -69,7 +69,7 @@ function createElements(
   console.log(`INDEX: ${index}`);
   console.log(`NOTEID: ${noteID}`);
 
-  note.classList.add(noteID);
+  // note.classList.add(noteID);
 
   const title = document.createElement("div");
   title.classList.add("title");
@@ -116,6 +116,7 @@ function createElements(
     removeBtn.style.display = "";
 
     overlay.addEventListener("click", function () {
+      //edits note in Mylibrary
       myLibrary.editNote(note, notetitle, notedate, notedescription, noteID, noteFilter);
 
       date.setAttribute('data-date', `${notedate}`);
