@@ -1,7 +1,6 @@
 
 export let index = "all";
 export let directoryID = "all"
-import { makeCurrentDirectory } from "..";
 
 function switchdirectory() {
   document.getElementById("today").addEventListener("click", function () {

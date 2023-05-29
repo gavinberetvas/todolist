@@ -4,16 +4,16 @@ export let myLibrary = {
   all: [],
   today: [
     {
-      title: "Today",
+      title: "Sample Note 1",
       date: "2023-05-26",
-      description: "description.value",
+      description: "\"We are what we repeatedly do. Excellence, then, is not an act, but a habit.\" - Aristotle",
       id: "today",
       complete: false,
     },
     {
-      title: "Today",
+      title: "Sample Note 2",
       date: "2023-05-25",
-      description: "description.value",
+      description: "\"To live is to suffer, to survive is to find meaning in the suffering.\" - Friedrich Nietzsche",
       id: "today",
       complete: false,
     },
@@ -21,34 +21,17 @@ export let myLibrary = {
 
   tomorrow: [
     {
-      title: "completed tomorrow",
+      title: "Sample Note 3",
       date: "2023-05-27",
-      description: "description.value",
+      description: "\"I can control my passions and emotions if I can understand their nature.\" - Spinoza",
       id: "tomorrow",
       complete: false,
     },
     {
-      title: "tomorrow",
-      date: "1924-10-18",
-      description: "description.value",
+      title: "Sample Note 4",
+      date: "2023-05-30",
+      description: "\"It is not death that a man should fear, but he should fear never beginning to live.\" - Marcus Aurelius",
       id: "tomorrow2",
-      complete: true,
-    },
-  ],
-
-  nextday: [
-    {
-      title: "important completed",
-      date: "1000-07-18",
-      description: "description.value",
-      id: "tomorrwkewe",
-      complete: true,
-    },
-    {
-      title: "tomorrow completed",
-      date: "2024-01-01",
-      description: "description.value",
-      id: "fddf5b8a-95e6-4fba-b703-dbd8f2edb8b6",
       complete: true,
     },
   ],
