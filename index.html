@@ -6,11 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="modal.css" />
+    <link rel="stylesheet" href="importedStyles.css" />
   </head>
   <body>
+    <nav class="header">
+      <div>
+        <img src="./assets/text-long.svg" alt="navbar-button" class="icon" />
+      </div>
+      <p class="odin-tasklist">Odin's Tasklist</p>
+    </nav>
     <div class="contentwrapper">
-      <nav class="navbar">
-        
+      <nav id="navbar" class="navbar">
         <button id="all" class="directory current">ALL NOTES</button>
         <button id="today" class="directory">TODAY</button>
         <button id="week" class="directory">THIS WEEK</button>
@@ -29,33 +42,37 @@
       </nav>
       <div id="main-content">
         <button id="todomaker2" data-modal-target="#modal">
-          New to do item
+          New Task + 
         </button>
       </div>
     </div>
 
     <div class="modal" id="modal">
       <div class="modal-header">
-        <div class="title">New Task</div>
-        <button data-close-button class="close-button">&times;</button>
+        <div class="title" id="modaltitle">New Task</div>
+        <button data-close-button="" class="close-button" id="closemodal">
+          &times;
+        </button>
       </div>
       <div class="modalbody">
         <form id="newtask">
-          <label for=""
-            ><input
-              class="forminput"
-              type="text"
-              id="title"
-              placeholder="Title"
-              required
-          /></label>
-          <label for=""
-            ><input
-              class="forminput"
-              type="date"
-              id="date"
-              placeholder="due date"
-          /></label>
+          <div class="titledate">
+            <label for=""
+              ><input
+                class="forminput"
+                type="text"
+                id="title"
+                placeholder="Title"
+                required
+            /></label>
+            <label for=""
+              ><input
+                class="forminput"
+                type="date"
+                id="date"
+                placeholder="due date"
+            /></label>
+          </div>
           <label for="description">
             <textarea
               class="forminput"
@@ -64,7 +81,7 @@
             ></textarea>
           </label>
           <div class="buttonwrapper">
-            <input type="submit" class="button" value="submit" />
+            <input type="submit" class="button button-65" value="submit" />
           </div>
         </form>
       </div>
