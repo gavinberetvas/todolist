@@ -18,9 +18,9 @@ pushAllItemstoDom();
 
 
 
-// window.addEventListener("beforeunload", function () {
-//   myLibrary.saveToLocalStorage();
-// });
+window.addEventListener("beforeunload", function () {
+  myLibrary.saveToLocalStorage();
+});
 
 let navbar = false;
 
