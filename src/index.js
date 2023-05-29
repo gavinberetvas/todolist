@@ -20,3 +20,44 @@ window.addEventListener("beforeunload", function () {
   myLibrary.saveToLocalStorage();
 });
 
+
+
+//bs to fix
+
+let navbar = false;
+
+document.getElementById("icon").addEventListener("click", () => {
+  if (navbar == false) {
+  document.getElementById("navbar").style.transform = "translateX(0%)";
+  navbar = true;
+  } else {
+    document.getElementById("navbar").style.transform = "translateX(-100%)";
+    navbar = false;
+  }
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 800) {
+    document.getElementById("navbar").style.transform = "translateX(0%)";
+  } else if (window.innerWidth < 800) {
+    document.getElementById("navbar").style.transform = "translateX(-100%)";
+  }
+});
+
+// function funnnction() {
+//   document.getElementById("navbar").style.transform = "translateX(0%)";
+//   navbar = true;
+// }
+
+function test2() {
+  if (navbar !== false) {
+    document.getElementById("navbar").style.transform = "translateX(-100%)";
+  }
+}
+
+// window.addEventListener("click", () => {
+//   if (navbar !== false) {
+//     document.getElementById("navbar").style.transform = "translateX(-100%)";
+//     navbar = false;
+//   }
+// });
