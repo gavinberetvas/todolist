@@ -16,6 +16,8 @@ newProjectButton();
 loadFromLocalStorage();
 pushAllItemstoDom();
 
+
+
 window.addEventListener("beforeunload", function () {
   myLibrary.saveToLocalStorage();
 });
@@ -43,7 +45,11 @@ function toggleNavbar() {
     const navbarElement = document.getElementById("navbar");
     const iconElement = document.getElementById("icon");
 
-    if (!navbarElement.contains(event.target) && event.target !== iconElement && navbar) {
+    if (
+      !navbarElement.contains(event.target) &&
+      event.target !== iconElement &&
+      navbar
+    ) {
       navbarElement.style.transform = "translateX(-100%)";
       navbarElement.classList.remove("active");
       navbar = false;
@@ -51,28 +57,23 @@ function toggleNavbar() {
   });
 }
 
-// window.addEventListener("resize", () => {
-//   if (window.innerWidth > 800) {
-//     document.getElementById("navbar").style.transform = "translateX(0%)";
-//   } else if (window.innerWidth < 800) {
-//     document.getElementById("navbar").style.transform = "translateX(-100%)";
-//   }
-// });
 
-// function funnnction() {
-//   document.getElementById("navbar").style.transform = "translateX(0%)";
-//   navbar = true;
+// export function makeCurrentDirectory(event) {
+//   const buttons = document.querySelectorAll(".directory");
+//   const target = event.target;
+
+//   target.classList.add("current");
+
+//   buttons.forEach((button) => {
+//     if (button !== target) {
+//       button.classList.remove("current");
+//     }
+//   });
 // }
 
-// function test2() {
-//   if (navbar !== false) {
-//     document.getElementById("navbar").style.transform = "translateX(-100%)";
-//   }
-// }
-
-// window.addEventListener("click", () => {
-//   if (navbar !== false) {
-//     document.getElementById("navbar").style.transform = "translateX(-100%)";
-//     navbar = false;
-//   }
+// // Add event listeners to the directory buttons
+// const directoryButtons = document.querySelectorAll(".directory");
+// directoryButtons.forEach((button) => {
+//   button.addEventListener("click", makeCurrentDirectory);
 // });
+

@@ -1,8 +1,7 @@
-import { myLibrary } from "./myLibraryObject";
 
 export let index = "all";
-
 export let directoryID = "all"
+import { makeCurrentDirectory } from "..";
 
 function switchdirectory() {
   document.getElementById("today").addEventListener("click", function () {
@@ -12,7 +11,8 @@ function switchdirectory() {
     sortByDay();
     makeCurrentDirectory();
 
-    changeDirectoryText ()
+    changeDirectoryText ();
+    makeCurrentDirectory();
     console.log(index);
   });
 
@@ -22,7 +22,8 @@ function switchdirectory() {
     sortByWeek();
     makeCurrentDirectory();
 
-    changeDirectoryText ()
+    changeDirectoryText ();
+    makeCurrentDirectory();
     console.log(index);
   });
 
@@ -32,7 +33,8 @@ function switchdirectory() {
     sortByImportant();
     makeCurrentDirectory();
 
-    changeDirectoryText ()
+    changeDirectoryText ();
+    makeCurrentDirectory();
     console.log(index);
   });
 
@@ -42,7 +44,8 @@ function switchdirectory() {
     sortByComplete()
     makeCurrentDirectory();
 
-    changeDirectoryText ()
+    changeDirectoryText ();
+    makeCurrentDirectory();
     console.log(index);
   });
 
@@ -52,7 +55,8 @@ function switchdirectory() {
     showAll();
     makeCurrentDirectory();
 
-    changeDirectoryText ()
+    changeDirectoryText ();
+    makeCurrentDirectory();
     console.log(index);
   });
 }
@@ -170,15 +174,23 @@ function sortByImportant() {
   }
 }
 
+//HELP:
+//sometimes this function below causes the styling to not be removed even though the class
+//is removed. 
+//i have no idea why that happens...
+
 export function makeCurrentDirectory() {
+  
   event.target.classList.add("current");
   const buttons = document.querySelectorAll(".directory");
+
   buttons.forEach((button) => {
     if (button != event.target) {
       button.classList.remove("current");
     }
   });
 }
+
 
 function showAll() {
   const elements = document.getElementsByClassName("card");
@@ -192,7 +204,7 @@ export function changeDirectoryText () {
   const indexID = document.getElementById("which-directory");
   indexID.innerHTML = directoryID;
 
-
 }
+
 
 export default switchdirectory;

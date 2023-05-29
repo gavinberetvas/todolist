@@ -176,7 +176,6 @@ export function loadProjectsFromLS() {
       newProject.addEventListener("click", () => {
         index = item.key;
 
-  
 
         console.log(newProjectName.innerHTML);
         console.log(`INDEX: ${index}`);
