@@ -14,7 +14,7 @@ export let myLibrary = {
       title: "Sample Note 2",
       date: "2023-05-25",
       description: "\"To live is to suffer, to survive is to find meaning in the suffering.\" - Friedrich Nietzsche",
-      id: "today",
+      id: "today2",
       complete: false,
     },
   ],
