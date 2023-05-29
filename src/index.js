@@ -1,4 +1,4 @@
-// import _, { functions } from "lodash";
+
 import modal from "./modules/modal";
 import switchdirectory from "./modules/switchdirectory";
 import { myLibrary } from "./modules/myLibraryObject";
@@ -15,8 +15,6 @@ newProjectButton();
 
 loadFromLocalStorage();
 pushAllItemstoDom();
-
-
 
 window.addEventListener("beforeunload", function () {
   myLibrary.saveToLocalStorage();
@@ -56,24 +54,3 @@ function toggleNavbar() {
     }
   });
 }
-
-
-// export function makeCurrentDirectory(event) {
-//   const buttons = document.querySelectorAll(".directory");
-//   const target = event.target;
-
-//   target.classList.add("current");
-
-//   buttons.forEach((button) => {
-//     if (button !== target) {
-//       button.classList.remove("current");
-//     }
-//   });
-// }
-
-// // Add event listeners to the directory buttons
-// const directoryButtons = document.querySelectorAll(".directory");
-// directoryButtons.forEach((button) => {
-//   button.addEventListener("click", makeCurrentDirectory);
-// });
-
