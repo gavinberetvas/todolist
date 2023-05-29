@@ -284,9 +284,8 @@ function completedButton(noteID, note) {
 }
 
 function importantButton(noteID, note) {
-  // const checkbox = document.createElement("input");
-  // checkbox.type = "checkbox";
-  // checkbox.classList.add("important-checkbox");
+  //TODO: IMPORTANT BUTTON NEEDS TO STYLE OFF DATA_IMPORTANT NOT CLASS
+
 
   const container = document.createElement("div");
   container.classList.add("importantcheckboxwrapper")
@@ -294,14 +293,6 @@ function importantButton(noteID, note) {
   const label = document.createElement("label");
   label.setAttribute("for", `important-checkbox-${noteID}`);
   label.classList.add("checkbox-label")
-
-  // label.addEventListener('change', function() {
-  //   if (this.checked) {
-  //     label.classList.add('checked');
-  //   } else {
-  //     label.classList.remove('checked');
-  //   }
-  // });
 
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
@@ -317,6 +308,7 @@ function importantButton(noteID, note) {
       const index = myLibrary[key].findIndex((item) => item.id == noteID);
       if (index !== -1 && myLibrary[key][index].important == true) {
         checkbox.checked = true;
+        label.classList.add('checked');
         console.log(myLibrary[key][index]);
         break;
       }

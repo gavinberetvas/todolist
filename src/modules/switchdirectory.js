@@ -2,40 +2,57 @@ import { myLibrary } from "./myLibraryObject";
 
 export let index = "all";
 
+export let directoryID = "all"
+
 function switchdirectory() {
   document.getElementById("today").addEventListener("click", function () {
     index = "today";
+    directoryID = "Today"
     // hideItems();
     sortByDay();
     makeCurrentDirectory();
+
+    changeDirectoryText ()
     console.log(index);
   });
 
   document.getElementById("week").addEventListener("click", function () {
     index = "tomorrow";
+    directoryID = "This Week"
     sortByWeek();
     makeCurrentDirectory();
+
+    changeDirectoryText ()
     console.log(index);
   });
 
   document.getElementById("important").addEventListener("click", function () {
     index = "important";
+    directoryID = "Important"
     sortByImportant();
     makeCurrentDirectory();
+
+    changeDirectoryText ()
     console.log(index);
   });
 
   document.getElementById("completed").addEventListener("click", function () {
     index = "completed";
+    directoryID = "Completed"
     sortByComplete()
     makeCurrentDirectory();
+
+    changeDirectoryText ()
     console.log(index);
   });
 
   document.getElementById("all").addEventListener("click", function () {
     index = "all";
+    directoryID = "All Notes"
     showAll();
     makeCurrentDirectory();
+
+    changeDirectoryText ()
     console.log(index);
   });
 }
@@ -169,6 +186,13 @@ function showAll() {
     const element = elements[i];
     element.style.display = "";
   }
+}
+
+export function changeDirectoryText () {
+  const indexID = document.getElementById("which-directory");
+  indexID.innerHTML = directoryID;
+
+
 }
 
 export default switchdirectory;

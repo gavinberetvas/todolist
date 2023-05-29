@@ -3,6 +3,8 @@ import { makeCurrentDirectory } from "./switchdirectory";
 import { index } from "./switchdirectory";
 import { myLibrary } from "./myLibraryObject";
 import { v4 as uuidv4 } from "uuid";
+import { changeDirectoryText } from "./switchdirectory";
+import { directoryID } from "./switchdirectory";
 
 let projectDirectory = [];
 
@@ -34,16 +36,33 @@ export function newProjectButton() {
     newProjectName.contentEditable = true;
     newProjectName.innerHTML = `New_Project`;
 
-    let deleteButton = document.createElement("button");
+    // let deleteButton = document.createElement("button");
+    // deleteButton.classList.add("editProject");
+    // deleteButton.innerHTML = `X`;
+    // deleteButton.dataset.delete = `${uuid}`;
+    // deleteButton.style.zIndex = 2;
+
+    const deleteButton = document.createElement("img");
+    deleteButton.setAttribute("src", "trash-can-outline.svg");
+    deleteButton.setAttribute("alt", "Delete");
+    deleteButton.setAttribute("title", "Delete");
     deleteButton.classList.add("editProject");
-    deleteButton.innerHTML = `X`;
     deleteButton.dataset.delete = `${uuid}`;
     deleteButton.style.zIndex = 2;
+    // removeBtn.appendChild(deleteButton);
+  
+  
+
+
+
 
     newProject.addEventListener("click", () => {
       index = uuid;
       console.log(newProjectName.innerHTML);
       console.log(`INDEX: ${index}`);
+
+      directoryID = newProjectName.innerHTML;
+      changeDirectoryText();
 
       makeCurrentDirectory();
 
@@ -74,6 +93,10 @@ export function newProjectButton() {
       }
 
       // TODO: IMPLEMENT PROJECT STORAGE
+
+      directoryID = newProjectName.innerHTML;
+      changeDirectoryText();
+      
       localStorage.setItem("projectDirectory", JSON.stringify(projectDirectory));
     });
 
@@ -135,16 +158,31 @@ export function loadProjectsFromLS() {
       newProjectName.contentEditable = true;
       newProjectName.innerHTML = item.title;
   
-      let deleteButton = document.createElement("button");
-      deleteButton.classList.add("editProject");
-      deleteButton.innerHTML = `X`;
-      deleteButton.dataset.delete = `${item.key}`;
-      deleteButton.style.zIndex = 2;
+  
+      // let deleteButton = document.createElement("button");
+      // deleteButton.classList.add("editProject");
+      // deleteButton.innerHTML = `X`;
+      // deleteButton.dataset.delete = `${item.key}`;
+      // deleteButton.style.zIndex = 2;
+
+      const deleteButton = document.createElement("img");
+    deleteButton.setAttribute("src", "trash-can-outline.svg");
+    deleteButton.setAttribute("alt", "Delete");
+    deleteButton.setAttribute("title", "Delete");
+    deleteButton.classList.add("editProject");
+    deleteButton.dataset.delete = `${item.key}`;
+    deleteButton.style.zIndex = 2;
   
       newProject.addEventListener("click", () => {
         index = item.key;
+
+  
+
         console.log(newProjectName.innerHTML);
         console.log(`INDEX: ${index}`);
+
+        directoryID = newProjectName.innerHTML;
+      changeDirectoryText();
 
         makeCurrentDirectory();
         filterByProject(testing);
@@ -159,6 +197,9 @@ export function loadProjectsFromLS() {
         newProjectName.classList.remove("activeproject");
         newProjectName.classList.remove("current");
         console.log("Blur event:", projectName);
+
+        directoryID = newProjectName.innerHTML;
+      changeDirectoryText();
   
         //edit here
         const objectIdToSearch = item.key;
