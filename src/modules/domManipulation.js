@@ -1,8 +1,5 @@
-// import { remove } from "lodash";
 import { myLibrary } from "./myLibraryObject";
-// import { libraryDirectories } from "./modalPopulate";
 import { index } from "./switchdirectory";
-// import { v4 as uuidv4 } from "uuid";
 
 const overlay = document.getElementById("overlay");
 
@@ -26,11 +23,8 @@ function pushtoDom() {
 
 export function pushAllItemstoDom() {
   let init = myLibrary.getAllObjects();
-  console.log(myLibrary.getAllObjects());
 
   init.forEach((item) => {
-    console.log(item);
-
     let notetitle = item.title;
     let notedate = item.date;
     let notedescription = item.description;
@@ -56,8 +50,6 @@ function createElements(
   noteID,
   noteFilter
 ) {
-  console.log(noteFilter);
-
   const note = document.createElement("div");
 
   const wrapper = document.createElement("div");
@@ -68,11 +60,6 @@ function createElements(
 
   note.classList.add("card");
   note.classList.add(index);
-
-  console.log(`INDEX: ${index}`);
-  console.log(`NOTEID: ${noteID}`);
-
-  // note.classList.add(noteID);
 
   const title = document.createElement("div");
   title.classList.add("title");
@@ -91,17 +78,14 @@ function createElements(
 
   title.addEventListener("input", function () {
     notetitle = title.innerHTML;
-    console.log(notetitle);
   });
 
   date.addEventListener("input", function () {
     notedate = date.value;
-    console.log(notedate);
   });
 
   description.addEventListener("input", function () {
     notedescription = description.innerHTML;
-    console.log(notedescription);
   });
 
   note.addEventListener("click", function (event) {
@@ -110,10 +94,11 @@ function createElements(
     note.classList.add("focus");
     note.style.zIndex = 10;
     note.style.position = "relative";
-    // note.style.height = "15rem";
 
     title.contentEditable = true;
+
     date.disabled = false;
+
     description.style.display = "";
     description.contentEditable = true;
 
@@ -122,7 +107,6 @@ function createElements(
     buttonBox.style.display = "";
 
     overlay.addEventListener("click", function () {
-      //edits note in Mylibrary
       myLibrary.editNote(
         note,
         notetitle,
@@ -141,8 +125,6 @@ function createElements(
       buttonBox.style.display = "none";
       removeBtn.style.display = "none";
       impButton.style.display = "none";
-
-      console.log(myLibrary.getAllObjects());
     });
   });
 
@@ -172,9 +154,6 @@ function createElements(
   buttonBox.appendChild(removeBtn);
 
   note.appendChild(wrapper);
-
-  // wrapper.appendChild(note);
-
   note.appendChild(description);
   note.appendChild(buttonBox);
 
@@ -184,7 +163,6 @@ function createElements(
 function deleteButton() {
   const removeBtn = document.createElement("button");
   removeBtn.classList.add("button", "rmv");
-  // removeBtn.innerHTML = "X";
 
   const deleteIcon = document.createElement("img");
   deleteIcon.setAttribute("src", "trash-can-outline.svg");
@@ -192,15 +170,11 @@ function deleteButton() {
   deleteIcon.setAttribute("title", "Delete");
   removeBtn.appendChild(deleteIcon);
 
-
-
   removeBtn.addEventListener("click", function () {
     setTimeout(function () {
       myLibrary.deleteNote(removeBtn);
-
       overlay.classList.remove("active");
       removeBtn.closest(".card").remove();
-      console.log(myLibrary.getAllObjects());
     }, 100);
   });
 
@@ -228,8 +202,6 @@ function completedButton(noteID, note) {
       const index = myLibrary[key].findIndex((item) => item.id == noteID);
       if (index !== -1 && myLibrary[key][index].complete == true) {
         checkbox.checked = true;
-
-        console.log(myLibrary[key][index]);
         break;
       }
     }
@@ -241,24 +213,20 @@ function completedButton(noteID, note) {
 
   checkbox.addEventListener("change", function () {
     if (this.checked) {
-      // note.classList.add("completed");
       note.setAttribute("data-complete", true);
     } else {
-      // note.classList.remove("completed");
       note.setAttribute("data-complete", false);
     }
   });
 
   checkbox.addEventListener("change", function () {
     if (this.checked) {
-      console.log("CHECKED");
       for (let key in myLibrary) {
         if (Array.isArray(myLibrary[key])) {
           const index = myLibrary[key].findIndex((item) => item.id == noteID);
           if (index !== -1 && myLibrary[key][index].complete == false) {
             checkbox.checked = true;
             myLibrary[key][index].complete = true;
-            console.log(myLibrary[key][index]);
             break;
           }
         }
@@ -271,7 +239,6 @@ function completedButton(noteID, note) {
           if (index !== -1 && myLibrary[key][index].complete == true) {
             checkbox.checked = false;
             myLibrary[key][index].complete = false;
-            console.log(myLibrary[key][index]);
             break;
           }
         }
@@ -279,15 +246,11 @@ function completedButton(noteID, note) {
     }
   });
 
-  // return checkbox;
   return container;
 }
 
 function importantButton(noteID, note) {
-  //TODO: IMPORTANT BUTTON NEEDS TO STYLE OFF DATA_IMPORTANT NOT CLASS
-
-
-  const container = document.createElement("div");
+const container = document.createElement("div");
   container.classList.add("importantcheckboxwrapper")
 
   const label = document.createElement("label");
@@ -297,7 +260,6 @@ function importantButton(noteID, note) {
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.id = `important-checkbox-${noteID}`;
-
   checkbox.classList.add("important-checkbox");
 
   container.appendChild(checkbox);
@@ -309,7 +271,6 @@ function importantButton(noteID, note) {
       if (index !== -1 && myLibrary[key][index].important == true) {
         checkbox.checked = true;
         label.classList.add('checked');
-        console.log(myLibrary[key][index]);
         break;
       }
     }
@@ -321,12 +282,10 @@ function importantButton(noteID, note) {
 
   checkbox.addEventListener("change", function () {
     if (this.checked) {
-      // note.classList.add("important");
       label.classList.add('checked');
 
       note.setAttribute("data-important", true);
     } else {
-      // note.classList.remove("important")
       label.classList.remove('checked');
       note.setAttribute("data-important", false);
     }
@@ -334,14 +293,12 @@ function importantButton(noteID, note) {
 
   checkbox.addEventListener("change", function () {
     if (this.checked) {
-      console.log("CHECKED");
       for (let key in myLibrary) {
         if (Array.isArray(myLibrary[key])) {
           const index = myLibrary[key].findIndex((item) => item.id == noteID);
           if (index !== -1 && myLibrary[key][index].important == false) {
             checkbox.checked = true;
             myLibrary[key][index].important = true;
-            console.log(myLibrary[key][index]);
             break;
           }
         }
@@ -353,7 +310,6 @@ function importantButton(noteID, note) {
           if (index !== -1 && myLibrary[key][index].important == true) {
             checkbox.checked = false;
             myLibrary[key][index].important = false;
-            console.log(myLibrary[key][index]);
             break;
           }
         }

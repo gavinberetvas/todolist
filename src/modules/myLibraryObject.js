@@ -47,9 +47,7 @@ export let myLibrary = {
       description: description.value,
       id: uuid,
       complete: false,
-      // filter: [],
     });
-    console.log(this);
     modal.classList.remove("active");
     overlay.classList.remove("active");
   },
@@ -100,7 +98,6 @@ export let myLibrary = {
       }
     }
 
-    console.log(objects);
     return objects;
   },
 
@@ -111,12 +108,9 @@ export let myLibrary = {
 
 export function loadFromLocalStorage() {
   const data = localStorage.getItem("myLibrary");
-  console.log(data);
   if (data) {
     const savedLibrary = JSON.parse(data);
-    console.log(savedLibrary);
 
-    // //initialization of object methods:
     myLibrary.newNote = function (event, index) {
       event.preventDefault();
       const { title, date, description, } = event.target.elements;
@@ -133,7 +127,6 @@ export function loadFromLocalStorage() {
         complete: false,
         important: false,
       });
-      console.log(this);
       modal.classList.remove("active");
       overlay.classList.remove("active");
     };
@@ -150,9 +143,6 @@ export function loadFromLocalStorage() {
       let itemImportant = note.getAttribute("data-important");
       let noteFilter = note.getAttribute("data-project")
 
-      console.log(`WOW: ${itemComplete}`)
-      console.log(`WOWWWEE: ${itemImportant}`)
-
       if (itemComplete === "true") {
         itemComplete = true;
       } else if (itemComplete === "false") {
@@ -165,8 +155,6 @@ export function loadFromLocalStorage() {
         itemImportant = false;
       }
     
-    
-
       let editedObject = {
         title: `${notetitle}`,
         date: `${notedate}`,
@@ -214,7 +202,6 @@ export function loadFromLocalStorage() {
         }
       }
 
-      console.log(objects);
       return objects;
     };
 
