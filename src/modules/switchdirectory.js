@@ -106,15 +106,12 @@ function sortByComplete() {
     const card = cards[i];
     let projectAttribute = card.getAttribute("data-complete");
 
+    ///change
     if (projectAttribute === "true") {
       projectAttribute = true;
+      card.style.display = "";
     } else if (projectAttribute === "false") {
       projectAttribute = false;
-    }
-
-    if (projectAttribute == true) {
-      card.style.display = "";
-    } else {
       card.style.display = "none";
     }
   }
