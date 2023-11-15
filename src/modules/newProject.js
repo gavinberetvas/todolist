@@ -141,6 +141,9 @@ function deleteButtonClickHandler(uuid, deleteButton, event) {
     console.log("delete cancel");
   }
 }
+// end subroutines
+
+// TODO: DRY LOCAL STORAGE OUT
 
 export function loadProjectsFromLS() {
   const data = localStorage.getItem("projectDirectory");
