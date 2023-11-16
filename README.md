@@ -24,12 +24,13 @@ This project was mainly geared towards familiarizing myself with the module patt
 
 ## Features
 
-* Create and delete multiple notes with a unique title, completion date, and description.
-* Pop-up modal overlay accessible through new note button on bottom right.
-* mark a note as important, which gives a note a gold star identifier.
+* Create multiple notes with a unique title, completion date, and description.
+* Easily delete notes by clicking on the trashcan icon.
+* Pop-up modal accessible through new note button on bottom right.
+* Mark a note as important, giving the note a gold star identifier.
 * Clicking on each individual shows its' description and importance. 
-* mark a note as complete, which gives it a unique color identifier. 
-* create projects in the side menu, and then sort notes based on their relevant project menu.
+* Mark a note as complete, which grays out the note. 
+* Create new project directories in the side menu. Then sort notes based on their relevant project menu.
 * Sidebar with sorting menu; show all or sort by date, importance, project, and completion.
 * Responsive design: optimized for mobile displays and desktop compatible.  
 
@@ -38,7 +39,8 @@ This project was mainly geared towards familiarizing myself with the module patt
 - [ ] Add cloud/local storage
 - [ ] improve UX/UI
 - [ ] Dark mode switch
-- [ ] Make importance a gradient (e.g. low,medium, high) rather than a binary
+- [ ] Add a feature to change which project a note belongs to.
+- [ ] Make importance a gradient (e.g. low, medium, high) rather than a binary
 
 ## License
 
